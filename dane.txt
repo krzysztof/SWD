@@ -1,0 +1,60 @@
+Wyniki testu pamięci w warunkach stresu.
+
+Grupa - Eksperymentalna lub kontrolna grupa badanych.
+Plec - Płeć badanego
+Czas - Czas wprowadzenia zadania
+Placa - Badanemu była (lub nie) oferowana zapłata
+Stres_s - Samoocena stresu
+Dobrze1 - Ilość poprawnie rozwiązanych pierwszych zadań
+Dobrze2 - Ilość poprawnie rozwiązanych drugich zadań
+Dobrze3 - Ilość poprawnie rozwiązanych trzecich zadań
+
+Grupa    Plec    Czas    Placa    Stres_s    Dobrze1    Dobrze2    Dobrze3
+EKSPERM    MĘSKA    PRZED    NIE_PŁAC    1,41    12    4    6
+EKSPERM    MĘSKA    PRZED    NIE_PŁAC    1,73    3    3    7
+EKSPERM    MĘSKA    PRZED    PŁACONE    0,00    7    6    0
+EKSPERM    MĘSKA    PRZED    PŁACONE    1,41    11    7    3
+EKSPERM    MĘSKA    PO_1    NIE_PŁAC    12,83    8    2    7
+EKSPERM    MĘSKA    PO_1    NIE_PŁAC    2,24    15    1    7
+EKSPERM    MĘSKA    PO_1    PŁACONE    2,24    15    3    3
+EKSPERM    MĘSKA    PO_1    PŁACONE    13,32    11    4    6
+EKSPERM    MĘSKA    PO_2    NIE_PŁAC    13,74    19    5    4
+EKSPERM    MĘSKA    PO_2    NIE_PŁAC    13,32    11    6    7
+EKSPERM    MĘSKA    PO_2    PŁACONE    13,00    9    6    5
+EKSPERM    MĘSKA    PO_2    PŁACONE    13,16    10    4    8
+EKSPERM    ŻEŃSKA    PRZED    NIE_PŁAC    14,00    8    2    2
+EKSPERM    ŻEŃSKA    PRZED    NIE_PŁAC    12,23    6    5    5
+EKSPERM    ŻEŃSKA    PRZED    PŁACONE    13,22    8    4    4
+EKSPERM    ŻEŃSKA    PO_1    PŁACONE    12,23    7    6    0
+EKSPERM    ŻEŃSKA    PO_1    NIE_PŁAC    13,00    5    1    1
+EKSPERM    ŻEŃSKA    PO_1    NIE_PŁAC    13,00    6    3    2
+EKSPERM    ŻEŃSKA    PO_1    PŁACONE    16,25    7    5    7
+EKSPERM    ŻEŃSKA    PO_1    PŁACONE    14,26    6    6    8
+EKSPERM    ŻEŃSKA    PO_2    NIE_PŁAC    10,00    5    4    7
+EKSPERM    ŻEŃSKA    PO_2    NIE_PŁAC    13,25    7    6    8
+EKSPERM    ŻEŃSKA    PO_2    PŁACONE    10,00    8    5    6
+EKSPERM    ŻEŃSKA    PO_2    PŁACONE    9,78    6    6    9
+KONTROL    MĘSKA    PRZED    NIE_PŁAC    4,25    11    7    5
+KONTROL    MĘSKA    PRZED    NIE_PŁAC    4,89    10    8    1
+KONTROL    MĘSKA    PRZED    PŁACONE    6,26    9    9    5
+KONTROL    MĘSKA    PRZED    PŁACONE    9,25    8    8    6
+KONTROL    MĘSKA    PO_1    NIE_PŁAC    10,35    4    7    4
+KONTROL    MĘSKA    PO_1    NIE_PŁAC    12,23    5    5    5
+KONTROL    MĘSKA    PO_1    PŁACONE    10,25    6    8    1
+KONTROL    MĘSKA    PO_1    PŁACONE    12,13    5    6    2
+KONTROL    MĘSKA    PO_2    NIE_PŁAC    4,25    4    5    4
+KONTROL    MĘSKA    PO_2    NIE_PŁAC    4,26    8    8    5
+KONTROL    MĘSKA    PO_2    PŁACONE    7,80    12    7    6
+KONTROL    MĘSKA    PO_2    PŁACONE    9,40    15    2    7
+KONTROL    ŻEŃSKA    PRZED    NIE_PŁAC    6,32    14    4    8
+KONTROL    ŻEŃSKA    PRZED    NIE_PŁAC    3,25    16    5    7
+KONTROL    ŻEŃSKA    PRZED    PŁACONE    4,25    13    4    5
+KONTROL    ŻEŃSKA    PRZED    PŁACONE    5,25    12    2    4
+KONTROL    ŻEŃSKA    PO_1    NIE_PŁAC    12,23    16    1    1
+KONTROL    ŻEŃSKA    PO_1    NIE_PŁAC    12,25    14    8    2
+KONTROL    ŻEŃSKA    PO_1    PŁACONE    11,23    10    9    3
+KONTROL    ŻEŃSKA    PO_1    PŁACONE    10,25    9    8    2
+KONTROL    ŻEŃSKA    PO_2    NIE_PŁAC    6,23    8    7    4
+KONTROL    ŻEŃSKA    PO_2    NIE_PŁAC    5,25    6    8    5
+KONTROL    ŻEŃSKA    PO_2    PŁACONE    14,25    7    1    6
+KONTROL    ŻEŃSKA    PO_2    PŁACONE    13,25    12    2    5
