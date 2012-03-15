@@ -7,4 +7,6 @@ def fun():
 #IS THIS
 def hello():
 	print "Hello2"
-#SOME COMMENTS AT THE END
+
+def funkcja2():
+	print "Funkcja numer 2"
