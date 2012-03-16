@@ -10,3 +10,11 @@ git push origin master
 git add .
 git commit -m 'dodałam wszystkie pliki'
 git push origin master
+
+#Jak jest konflikt:
+git push origin master [Nie działa, wypisuje błąd]
+git pull origin master
+...
+git add .
+git commit -m 'zrobiłam merge'
+git push origin master [Teraz pójdzie]
