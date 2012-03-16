@@ -28,6 +28,7 @@ class Zbior:
 			self.lista.append([i.split(separator)])
 		return self.lista
 #ania to dopisala ¿eby zobaczyc czy dzia³a
+# druga zmiana zeby konflikt zobaczyc
 
 if(__name__ == "__main__"):
 	z = Zbior()
