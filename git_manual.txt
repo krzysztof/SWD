@@ -1,4 +1,4 @@
-#Pobieranie najnowszej wersji projektu z serwera:
+﻿#Pobieranie najnowszej wersji projektu z serwera:
 git pull origin master
 
 #Zrobienie commita pliku "plik.txt", "plik2.txt"
@@ -18,3 +18,5 @@ git pull origin master
 git add .
 git commit -m 'zrobiłam merge'
 git push origin master [Teraz pójdzie]
+
+# a teraz mój manual: ANeczka :D
