@@ -1,17 +1,39 @@
+﻿<<<<<<< HEAD
 ﻿#Pobieranie najnowszej wersji projektu z serwera:
+=======
+#############
+#Pobieranie najnowszej wersji projektu z serwera:
+#############
+
+>>>>>>> cdf1cb1a72b7f47de0704c8bd0d7098fdc5ddda7
 git pull origin master
 
+
+
+############
 #Zrobienie commita pliku "plik.txt", "plik2.txt"
+############
+
 git add plik.txt plik2.txt
 git commit -m 'dodałam dwa pliki'
 git push origin master
 
+
+
+############
 #To co wyżej tylko dodanie wszystkiego z folderu:
+############
+
 git add .
 git commit -m 'dodałam wszystkie pliki'
 git push origin master
 
-#Jak jest konflikt:
+
+
+############
+#Jak jest konflikt
+############
+
 git push origin master [Nie działa, wypisuje błąd]
 git pull origin master
 ...
@@ -19,4 +41,8 @@ git add .
 git commit -m 'zrobiłam merge'
 git push origin master [Teraz pójdzie]
 
+
 # a teraz mój manual: ANeczka :D
+
+# skróty
+
