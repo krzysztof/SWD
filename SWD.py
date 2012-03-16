@@ -27,7 +27,7 @@ class Zbior:
 		for i in f[skip+1:]:
 			self.lista.append([i.split(separator)])
 		return self.lista
-
+#ania to dopisala ¿eby zobaczyc czy dzia³a
 
 if(__name__ == "__main__"):
 	z = Zbior()
