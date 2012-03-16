@@ -40,3 +40,4 @@ git push origin master [Teraz pójdzie]
 ###########
 # skróty
 ###########
+
