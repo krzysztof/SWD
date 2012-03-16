@@ -1,0 +1,12 @@
+#Pobieranie najnowszej wersji projektu z serwera:
+git pull origin master
+
+#Zrobienie commita pliku "plik.txt", "plik2.txt"
+git add plik.txt plik2.txt
+git commit -m 'dodałam dwa pliki'
+git push origin master
+
+#To co wyżej tylko dodanie wszystkiego z folderu:
+git add .
+git commit -m 'dodałam wszystkie pliki'
+git push origin master
