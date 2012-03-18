@@ -1,4 +1,4 @@
-Wyniki testu pamięci w warunkach stresu.
+﻿Wyniki testu pamięci w warunkach stresu.
 
 Grupa - Eksperymentalna lub kontrolna grupa badanych.
 Plec - Płeć badanego
