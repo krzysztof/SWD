@@ -71,10 +71,35 @@ class Zbior:
 		krok = (max-min)/n
 		
 		for i in range(len(self.lista)):
-			self.lista[i].append(min(int((self.lista[i][ktora]-min)/n),n-1))
+			if (self.lista[i][ktora] == max):
+				self.lista[i].append(n-1)
+			else:
+				self.lista[i].append(int((self.lista[i][ktora]-min)/n))
 		
 		self.kolumny.append('Przedzialy: ' + self.kolumny[ktora])
 		self.typy.append(int)
+		
+	def dyskretyzuj2(self, ktora, n):
+		pom = []
+		for i in range(len(self.lista)):
+			pom.append(self.lista[i][ktora])
+			
+		klucze = self.daj_klucze(pom)
+		wystapienia = [0] * len(klucze)
+		
+		for i in range(len(klucze)):
+			wystapienia[i] = pom.count(klucze[i])
+		klucze =zip(klucze, wystapienia)
+		klucze.sort(key = lambda x:x[1], reverse = True)
+		print klucze
+		
+	def daj_klucze(self,seq): 
+		checked = []
+		for e in seq:
+			if e not in checked:
+				checked.append(e)
+		return checked
+		
 		
 	#	b = [a[i] for i in range(0,len(a),n)]
 
@@ -85,4 +110,5 @@ if(__name__ == "__main__"):
 	z.rzutuj(str, 1)
 	#z.usun_zmienna(0)
 	z.dyskretyzuj(7,3)
+	z.dyskretyzuj2(7,3)
 	print z
