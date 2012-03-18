@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'window.ui'
 #
-# Created: Sun Mar 18 23:42:27 2012
+# Created: Mon Mar 19 00:10:28 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -90,6 +90,8 @@ class Ui_MainWindow(object):
         self.menuFile.setObjectName(_fromUtf8("menuFile"))
         self.menuData = QtGui.QMenu(self.menubar)
         self.menuData.setObjectName(_fromUtf8("menuData"))
+        self.menuDebug = QtGui.QMenu(self.menubar)
+        self.menuDebug.setObjectName(_fromUtf8("menuDebug"))
         MainWindow.setMenuBar(self.menubar)
         self.actionAdd_Row = QtGui.QAction(MainWindow)
         self.actionAdd_Row.setObjectName(_fromUtf8("actionAdd_Row"))
@@ -115,13 +117,14 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.actionSave)
         self.menuData.addAction(self.actionAdd_Row)
         self.menuData.addAction(self.actionAdd_Col)
-        self.menuData.addAction(self.actionClear)
         self.menuData.addAction(self.actionDelete_Row)
         self.menuData.addAction(self.actionDelete_Col)
-        self.menuData.addAction(self.actionPopulate_from_set)
-        self.menuData.addAction(self.actionDEBUG)
+        self.menuDebug.addAction(self.actionPopulate_from_set)
+        self.menuDebug.addAction(self.actionClear)
+        self.menuDebug.addAction(self.actionDEBUG)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuData.menuAction())
+        self.menubar.addAction(self.menuDebug.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -132,9 +135,10 @@ class Ui_MainWindow(object):
         self.namesPushButton.setText(QtGui.QApplication.translate("MainWindow", "Change Names", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuData.setTitle(QtGui.QApplication.translate("MainWindow", "Data", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuDebug.setTitle(QtGui.QApplication.translate("MainWindow", "Debug", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAdd_Row.setText(QtGui.QApplication.translate("MainWindow", "Add Row", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAdd_Col.setText(QtGui.QApplication.translate("MainWindow", "Add Col", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionClear.setText(QtGui.QApplication.translate("MainWindow", "Clear", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionClear.setText(QtGui.QApplication.translate("MainWindow", "(DEBUG)Clear", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDelete_Row.setText(QtGui.QApplication.translate("MainWindow", "Delete Row", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDelete_Col.setText(QtGui.QApplication.translate("MainWindow", "Delete Col", None, QtGui.QApplication.UnicodeUTF8))
         self.actionPopulate_from_set.setText(QtGui.QApplication.translate("MainWindow", "(DEBUG)Populate", None, QtGui.QApplication.UnicodeUTF8))

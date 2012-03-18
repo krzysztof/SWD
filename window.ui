@@ -166,14 +166,20 @@
     </property>
     <addaction name="actionAdd_Row"/>
     <addaction name="actionAdd_Col"/>
-    <addaction name="actionClear"/>
     <addaction name="actionDelete_Row"/>
     <addaction name="actionDelete_Col"/>
+   </widget>
+   <widget class="QMenu" name="menuDebug">
+    <property name="title">
+     <string>Debug</string>
+    </property>
     <addaction name="actionPopulate_from_set"/>
+    <addaction name="actionClear"/>
     <addaction name="actionDEBUG"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuData"/>
+   <addaction name="menuDebug"/>
   </widget>
   <action name="actionAdd_Row">
    <property name="text">
@@ -187,7 +193,7 @@
   </action>
   <action name="actionClear">
    <property name="text">
-    <string>Clear</string>
+    <string>(DEBUG)Clear</string>
    </property>
   </action>
   <action name="actionDelete_Row">
