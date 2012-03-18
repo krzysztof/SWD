@@ -38,7 +38,7 @@ class Main(QtGui.QMainWindow):
 	 def DEBUG(self):
 #		  self.print_data()
 		  #self.refresh_data()
-		  self.edit_types_dialog()
+		  self.edit_types()
 	 
 	 def print_data(self):
 		  cols = self.ui.treeWidget.columnCount()
@@ -84,6 +84,8 @@ class Main(QtGui.QMainWindow):
 				self.add_column(i)
 		  for i in zb.lista:
 				self.add_row(i)
+		  text = ",".join([self.TypToS[str(x)] for x in zb.typy])
+		  self.ui.typesLineEdit.insert(text)
 
 	 def set_zbior(self,zb):
 		  self.zb = zb;
@@ -93,8 +95,12 @@ class Main(QtGui.QMainWindow):
 		  self.ui.treeWidget.clear()
 		  self.ui.treeWidget.setColumnCount(0)
 
-	 def edit_types_dialog(self):
-		  ctd = ChangeTypeDialog(self)
+	 def edit_types(self):
+		  types = [self.SToTyp[str(x).strip()] for x in self.ui.typesLineEdit.text().split(',')]
+		  if(len(types) != len(self.zb.typy)):
+				print "can't cast! different size of types"
+		  else:
+				self.zb.typy = types
 
 	 def add_row(self):
 		  add_row(None)
@@ -129,7 +135,9 @@ class Main(QtGui.QMainWindow):
 		  self.ui.actionClear.triggered.connect(self.clear_tree)
 		  self.ui.actionPopulate_from_set.triggered.connect(self.populate_from_set)
 		  self.ui.actionDEBUG.triggered.connect(self.DEBUG)
-		  self.ui.actionEdit_Column_Types.triggered.connect(self.edit_types_dialog)
+		  self.ui.typesPushButton.clicked.connect(self.edit_types)
+		  self.TypToS = {str(int):"int",str(float):"float",str(bool):"bool",str(unicode):"unicode"}
+		  self.SToTyp = {"int":int,"float":float,"bool":bool,"unicode":unicode}
 
         # Let's do something interesting: load the database contents 
         # into our task list widget
