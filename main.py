@@ -105,7 +105,6 @@ class Main(QtGui.QMainWindow):
 		  #self.ui.treeWidget = QtGui.QTreeWidget(self.ui.centralwidget)
 		  self.ui.treeWidget.clear()
 		  self.ui.treeWidget.setColumnCount(0)
-		  self.zb = Zbior()
 
 	 def edit_types(self):
 		  types = [self.SToTyp[str(x).strip()] for x in self.ui.typesLineEdit.text().split(',')]
