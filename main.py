@@ -36,10 +36,17 @@ from window import Ui_MainWindow
 
 class Main(QtGui.QMainWindow):
 	 def DEBUG(self):
-		  pass
+		  self.remove_row(0)
+		  self.remove_col(0)
 #		  self.print_data()
 		  #self.refresh_data()
 		  #self.edit_types()
+	 def remove_row(self,i):
+		  self.zb.usun_obserwacja(i)
+		  self.populate_from_set()
+	 def remove_col(self,i):
+		  self.zb.usun_zmienna(int(i))
+		  self.populate_from_set() ## sprawdzic czy dziala
 	 
 	 def print_data(self):
 		  cols = self.ui.treeWidget.columnCount()
@@ -98,6 +105,7 @@ class Main(QtGui.QMainWindow):
 		  #self.ui.treeWidget = QtGui.QTreeWidget(self.ui.centralwidget)
 		  self.ui.treeWidget.clear()
 		  self.ui.treeWidget.setColumnCount(0)
+		  self.zb = Zbior()
 
 	 def edit_types(self):
 		  types = [self.SToTyp[str(x).strip()] for x in self.ui.typesLineEdit.text().split(',')]
@@ -105,6 +113,7 @@ class Main(QtGui.QMainWindow):
 				print "can't cast! different size of types"
 		  else:
 				self.zb.typy = types
+				self.populate_from_set()
 
 	 def edit_names(self):
 		  names = [unicode(x).strip() for x in self.ui.namesLineEdit.text().split(',')]
@@ -112,6 +121,8 @@ class Main(QtGui.QMainWindow):
 				print "can't cast! different size of types"
 		  else:
 				self.zb.kolumny = names
+				self.populate_from_set()
+
 
 	 def add_row(self):
 		  add_row(None)
@@ -128,6 +139,14 @@ class Main(QtGui.QMainWindow):
 		  text, ok = QtGui.QInputDialog.getText(self, 'Nowa kolumna', 'Podaj nazwe')
 		  if ok:
 				self.add_column(str(text))
+	 def remove_column_dialog(self):
+		  text, ok = QtGui.QInputDialog.getText(self, 'Usun kolumne', 'Podaj numer kolumny')
+		  if ok:
+				self.remove_col(int(text))
+	 def remove_row_dialog(self):
+		  text, ok = QtGui.QInputDialog.getText(self, 'Usun wiersz', 'Podaj numer wiersza')
+		  if ok:
+				self.remove_row(int(text))
 
 	 def get_translated(self,string):
 		  return QtGui.QApplication.translate("MainWindow", string, None, QtGui.QApplication.UnicodeUTF8)
@@ -146,6 +165,9 @@ class Main(QtGui.QMainWindow):
 
 		  self.ui.actionAdd_Row.triggered.connect(self.add_row)
 		  self.ui.actionAdd_Col.triggered.connect(self.add_empty_column)
+		  self.ui.actionDelete_Col.triggered.connect(self.remove_column_dialog)
+		  self.ui.actionDelete_Row.triggered.connect(self.remove_row_dialog)
+
 		  self.ui.actionClear.triggered.connect(self.clear_tree)
 		  self.ui.actionPopulate_from_set.triggered.connect(self.populate_from_set)
 		  self.ui.actionDEBUG.triggered.connect(self.DEBUG)
@@ -182,7 +204,6 @@ def main_DBG():
 	 zb.wczytaj('dane.txt','    ',11,'Q')
 	 window.set_zbior(zb)
 	 window.populate_from_set()
-	 window.DEBUG()
     # It's exec_ because exec is a reserved word in Python
 	 sys.exit(app.exec_())
     

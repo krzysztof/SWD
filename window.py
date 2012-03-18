@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'window.ui'
 #
-# Created: Sun Mar 18 22:10:49 2012
+# Created: Sun Mar 18 23:42:27 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -107,9 +107,14 @@ class Ui_MainWindow(object):
         self.actionDEBUG.setObjectName(_fromUtf8("actionDEBUG"))
         self.actionEdit_Column_Types = QtGui.QAction(MainWindow)
         self.actionEdit_Column_Types.setObjectName(_fromUtf8("actionEdit_Column_Types"))
+        self.actionLoad = QtGui.QAction(MainWindow)
+        self.actionLoad.setObjectName(_fromUtf8("actionLoad"))
+        self.actionSave = QtGui.QAction(MainWindow)
+        self.actionSave.setObjectName(_fromUtf8("actionSave"))
+        self.menuFile.addAction(self.actionLoad)
+        self.menuFile.addAction(self.actionSave)
         self.menuData.addAction(self.actionAdd_Row)
         self.menuData.addAction(self.actionAdd_Col)
-        self.menuData.addAction(self.actionEdit_Column_Types)
         self.menuData.addAction(self.actionClear)
         self.menuData.addAction(self.actionDelete_Row)
         self.menuData.addAction(self.actionDelete_Col)
@@ -132,7 +137,9 @@ class Ui_MainWindow(object):
         self.actionClear.setText(QtGui.QApplication.translate("MainWindow", "Clear", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDelete_Row.setText(QtGui.QApplication.translate("MainWindow", "Delete Row", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDelete_Col.setText(QtGui.QApplication.translate("MainWindow", "Delete Col", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionPopulate_from_set.setText(QtGui.QApplication.translate("MainWindow", "Populate from set", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionPopulate_from_set.setText(QtGui.QApplication.translate("MainWindow", "(DEBUG)Populate", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDEBUG.setText(QtGui.QApplication.translate("MainWindow", "DEBUG", None, QtGui.QApplication.UnicodeUTF8))
         self.actionEdit_Column_Types.setText(QtGui.QApplication.translate("MainWindow", "Edit Column Types", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionLoad.setText(QtGui.QApplication.translate("MainWindow", "Load", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSave.setText(QtGui.QApplication.translate("MainWindow", "Save", None, QtGui.QApplication.UnicodeUTF8))
 
