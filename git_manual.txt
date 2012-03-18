@@ -1,11 +1,7 @@
-﻿<<<<<<< HEAD
-﻿#Pobieranie najnowszej wersji projektu z serwera:
-=======
-#############
+﻿#############
 #Pobieranie najnowszej wersji projektu z serwera:
 #############
 
->>>>>>> cdf1cb1a72b7f47de0704c8bd0d7098fdc5ddda7
 git pull origin master
 
 
@@ -40,9 +36,3 @@ git pull origin master
 git add .
 git commit -m 'zrobiłam merge'
 git push origin master [Teraz pójdzie]
-
-
-# a teraz mój manual: ANeczka :D
-
-# skróty
-

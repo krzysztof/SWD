@@ -9,7 +9,7 @@ Dobrze1 - Ilość poprawnie rozwiązanych pierwszych zadań
 Dobrze2 - Ilość poprawnie rozwiązanych drugich zadań
 Dobrze3 - Ilość poprawnie rozwiązanych trzecich zadań
 
-Grupa    Plec    Czas    Placa    Stres_s    Dobrze1    Dobrze2    Dobrze3
+Grupa    Płeć    Czas    Placa    Stres_s    Dobrze1    Dobrze2    Dobrze3
 EKSPERM    MĘSKA    PRZED    NIE_PŁAC    1,41    12    4    6
 EKSPERM    MĘSKA    PRZED    NIE_PŁAC    1,73    3    3    7
 EKSPERM    MĘSKA    PRZED    PŁACONE    0,00    7    6    0
