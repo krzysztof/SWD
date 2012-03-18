@@ -58,11 +58,31 @@ class Zbior:
 		self.typy[ktory] = na_co
 		for i in range(len(self.lista)):
 			self.lista[i][ktory] = na_co(self.lista[i][ktory])
+	
+	def dyskretyzuj(self,ktora, n):
+		min = self.lista[0][ktora]
+		max = self.lista[0][ktora]
+		for i in range(len(self.lista)):
+			if(min > self.lista[i][ktora]):
+				min = self.lista[i][ktora]
+			if(max < self.lista[i][ktora]):
+				max = self.lista[i][ktora]
+		
+		krok = (max-min)/n
+		
+		for i in range(len(self.lista)):
+			self.lista[i].append(min(int((self.lista[i][ktora]-min)/n),n-1))
+		
+		self.kolumny.append('Przedzialy: ' + self.kolumny[ktora])
+		self.typy.append(int)
+		
+	#	b = [a[i] for i in range(0,len(a),n)]
 
 if(__name__ == "__main__"):
 	z = Zbior()
 	z.wczytaj('dane.txt', '    ', 11, 1)
 	z.rzutuj(int, 7)
 	z.rzutuj(str, 1)
-	z.usun_zmienna(0)
+	#z.usun_zmienna(0)
+	z.dyskretyzuj(7,3)
 	print z
