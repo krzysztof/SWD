@@ -20,22 +20,22 @@ class Zbior:
 		return s
 	
 	def wczytaj(self,plik,separator,skip,nazwy_kolumn):
-		f = open(plik,"r");
-		f = list(f)
+		pl = open(plik,"r");
+		f = pl.read().split('\n')
+		pl.close()
 		if (nazwy_kolumn):
-			self.kolumny.append(f[skip].split(separator))
-		for i in f[skip+1:]:
-			self.lista.append([i.split(separator)])
+			self.kolumny = f[skip].split(separator)
+		for i in f[skip+1:-1]:
+			self.lista.append(i.split(separator))
 		return self.lista
-#ania to dopisala ¿eby zobaczyc czy dzia³a
-# druga zmiana zeby konflikt zobaczyc
 
 if(__name__ == "__main__"):
 	z = Zbior()
-	z.wczytaj('dane.txt', '	', 11, 'Q')
+	z.wczytaj('dane.txt', '    ', 11, 'Q')
 	#z.dodaj_liste([1,2,"napis",True,1.233])
 	#z.dodaj_typy([int,int,str,bool,float])
-	print z
+	for i in z.lista:
+		print i
 	#print z
 	#z.dodaj_liste(["ALA","Warszawa"])
 	#z.dodaj_typy([str,str])
