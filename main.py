@@ -14,31 +14,32 @@ from window import Ui_MainWindow
 #import todo
 
 # Create a class for our main window
-class ChangeTypeDialog(QtGui.QWidget):
-
-	 def __init__(self,window):
-		  super(ChangeTypeDialog,self).__init__()
-		  self.window = window
-		  self.initUI()
-
-	 def initUI(self):
-		  possible = [int,float,bool,unicode]
-		  cols = self.window.ui.treeWidget.columnCount()
-		  combos = []
-		  vbox = QtGui.QVBoxLayout(self)
-		  for i in range(cols):
-				cbx = QtGui.QComboBox()
-				for p in possible:
-					 cbx.addItems(QtCore.QStringList([str(x) for x in possible]))
-				vbox.addWidget(cbx)
-				combos.append(cbx)
-		  self.show()
+###class ChangeTypeDialog(QtGui.QWidget):
+###
+###	 def __init__(self,window):
+###		  super(ChangeTypeDialog,self).__init__()
+###		  self.window = window
+###		  self.initUI()
+###
+###	 def initUI(self):
+###		  possible = [int,float,bool,unicode]
+###		  cols = self.window.ui.treeWidget.columnCount()
+###		  combos = []
+###		  vbox = QtGui.QVBoxLayout(self)
+###		  for i in range(cols):
+###				cbx = QtGui.QComboBox()
+###				for p in possible:
+###					 cbx.addItems(QtCore.QStringList([str(x) for x in possible]))
+###				vbox.addWidget(cbx)
+###				combos.append(cbx)
+###		  self.show()
 
 class Main(QtGui.QMainWindow):
 	 def DEBUG(self):
+		  pass
 #		  self.print_data()
 		  #self.refresh_data()
-		  self.edit_types()
+		  #self.edit_types()
 	 
 	 def print_data(self):
 		  cols = self.ui.treeWidget.columnCount()
@@ -85,7 +86,10 @@ class Main(QtGui.QMainWindow):
 		  for i in zb.lista:
 				self.add_row(i)
 		  text = ",".join([self.TypToS[str(x)] for x in zb.typy])
-		  self.ui.typesLineEdit.insert(text)
+		  self.ui.typesLineEdit.setText(text)
+		  #text = ",".join([self.get_translated(str(x)) for x in zb.kolumny])
+		  text = ",".join(zb.kolumny)
+		  self.ui.namesLineEdit.setText(text)
 
 	 def set_zbior(self,zb):
 		  self.zb = zb;
@@ -102,6 +106,13 @@ class Main(QtGui.QMainWindow):
 		  else:
 				self.zb.typy = types
 
+	 def edit_names(self):
+		  names = [unicode(x).strip() for x in self.ui.namesLineEdit.text().split(',')]
+		  if(len(names) != len(self.zb.kolumny)):
+				print "can't cast! different size of types"
+		  else:
+				self.zb.kolumny = names
+
 	 def add_row(self):
 		  add_row(None)
 		  
@@ -117,6 +128,9 @@ class Main(QtGui.QMainWindow):
 		  text, ok = QtGui.QInputDialog.getText(self, 'Nowa kolumna', 'Podaj nazwe')
 		  if ok:
 				self.add_column(str(text))
+
+	 def get_translated(self,string):
+		  return QtGui.QApplication.translate("MainWindow", string, None, QtGui.QApplication.UnicodeUTF8)
 		  
 	 def add_column(self,nazwa):
 		  idx = self.ui.treeWidget.columnCount()
@@ -136,6 +150,7 @@ class Main(QtGui.QMainWindow):
 		  self.ui.actionPopulate_from_set.triggered.connect(self.populate_from_set)
 		  self.ui.actionDEBUG.triggered.connect(self.DEBUG)
 		  self.ui.typesPushButton.clicked.connect(self.edit_types)
+		  self.ui.namesPushButton.clicked.connect(self.edit_names)
 		  self.TypToS = {str(int):"int",str(float):"float",str(bool):"bool",str(unicode):"unicode"}
 		  self.SToTyp = {"int":int,"float":float,"bool":bool,"unicode":unicode}
 
