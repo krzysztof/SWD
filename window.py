@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'window.ui'
 #
-# Created: Sun Mar 18 19:05:27 2012
+# Created: Sun Mar 18 22:10:49 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -20,8 +20,32 @@ class Ui_MainWindow(object):
         MainWindow.resize(765, 635)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.horizontalLayout = QtGui.QHBoxLayout(self.centralwidget)
+        self.verticalLayout = QtGui.QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
+        self.widget = QtGui.QWidget(self.centralwidget)
+        self.widget.setObjectName(_fromUtf8("widget"))
+        self.horizontalLayout_2 = QtGui.QHBoxLayout(self.widget)
+        self.horizontalLayout_2.setMargin(0)
+        self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
+        self.typesLineEdit = QtGui.QLineEdit(self.widget)
+        self.typesLineEdit.setObjectName(_fromUtf8("typesLineEdit"))
+        self.horizontalLayout_2.addWidget(self.typesLineEdit)
+        self.typesPushButton = QtGui.QPushButton(self.widget)
+        self.typesPushButton.setObjectName(_fromUtf8("typesPushButton"))
+        self.horizontalLayout_2.addWidget(self.typesPushButton)
+        self.verticalLayout.addWidget(self.widget)
+        self.widget_2 = QtGui.QWidget(self.centralwidget)
+        self.widget_2.setObjectName(_fromUtf8("widget_2"))
+        self.horizontalLayout = QtGui.QHBoxLayout(self.widget_2)
+        self.horizontalLayout.setMargin(0)
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
+        self.namesLineEdit = QtGui.QLineEdit(self.widget_2)
+        self.namesLineEdit.setObjectName(_fromUtf8("namesLineEdit"))
+        self.horizontalLayout.addWidget(self.namesLineEdit)
+        self.namesPushButton = QtGui.QPushButton(self.widget_2)
+        self.namesPushButton.setObjectName(_fromUtf8("namesPushButton"))
+        self.horizontalLayout.addWidget(self.namesPushButton)
+        self.verticalLayout.addWidget(self.widget_2)
         self.treeWidget = QtGui.QTreeWidget(self.centralwidget)
         self.treeWidget.setEnabled(True)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
@@ -52,7 +76,7 @@ class Ui_MainWindow(object):
         self.treeWidget.header().setVisible(True)
         self.treeWidget.header().setDefaultSectionSize(90)
         self.treeWidget.header().setStretchLastSection(False)
-        self.horizontalLayout.addWidget(self.treeWidget)
+        self.verticalLayout.addWidget(self.treeWidget)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 765, 22))
@@ -99,6 +123,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Systemy Wspomagania Decyzji", None, QtGui.QApplication.UnicodeUTF8))
+        self.typesPushButton.setText(QtGui.QApplication.translate("MainWindow", "Cast Types", None, QtGui.QApplication.UnicodeUTF8))
+        self.namesPushButton.setText(QtGui.QApplication.translate("MainWindow", "Change Names", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuData.setTitle(QtGui.QApplication.translate("MainWindow", "Data", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAdd_Row.setText(QtGui.QApplication.translate("MainWindow", "Add Row", None, QtGui.QApplication.UnicodeUTF8))

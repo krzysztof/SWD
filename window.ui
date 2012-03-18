@@ -14,7 +14,39 @@
    <string>Systemy Wspomagania Decyzji</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QWidget" name="widget" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLineEdit" name="typesLineEdit"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="typesPushButton">
+         <property name="text">
+          <string>Cast Types</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="widget_2" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLineEdit" name="namesLineEdit"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="namesPushButton">
+         <property name="text">
+          <string>Change Names</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
     <item>
      <widget class="QTreeWidget" name="treeWidget">
       <property name="enabled">
