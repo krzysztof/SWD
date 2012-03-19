@@ -1,5 +1,8 @@
 from math import sqrt
 
+TypToS = {str(int):"int",str(float):"float",str(bool):"bool",str(unicode):"str",str(str):"str"}
+SToTyp = {"int":int,"float":float,"bool":bool,"unicode":str,"str":str}
+
 class Zbior:
 	def __init__(self):
 		self.lista = []
@@ -21,21 +24,44 @@ class Zbior:
 			s+= str(i)+"\n"
 		return s
 	
-	def wczytaj(self,plik,separator,skip,nazwy_kolumn):
+	def zapisz(self,fname, separ, kol,typy):
+		pl = open(fname,"w");
+		#f = list(f)
+		separ = str(separ)
+		fname = str(fname)
+		out = []
+		if(kol):
+			names = separ.join([str(x) for x in self.kolumny])
+			out+= [names]
+		if(typy):
+			typy = separ.join([TypToS[str(x)] for x in self.typy])
+			out+= [typy]
+		items = []
+		for i in range(len(self.lista)):
+			items.append(separ.join([str(x) for x in self.lista[i]]))
+		out += items
+		pl.write('\n'.join(out))
+		#write to file
+		pl.close()
+	def wczytaj(self,plik,separator,skip,nazwy_kolumn,nazwy_typow):
 		pl = open(plik,"r");
 		#f = list(f)
 		f = pl.read().split('\n')
 		pl.close()
+		start = skip
 		
 		if (nazwy_kolumn):
-			self.kolumny = f[skip].split(separator)
-		else:
-			skip -=1
+			self.kolumny = f[start].split(separator)
+			start += 1
+		if (nazwy_typow):
+			self.typy = [SToTyp[x] for x in f[start].split(separator)]
+			start += 1
 		
-		for i in f[skip+1:]:
+		for i in f[start:]:
 			self.lista.append(i.split(separator))
-		for i in range(len(self.lista[0])):
-			self.typy.append(unicode)
+		if (not nazwy_typow):
+			for i in range(len(self.lista[0])):
+				self.typy.append(unicode)
 		
 		if(not nazwy_kolumn):
 			for i in range(len(self.lista[0])):
@@ -149,6 +175,8 @@ class Zbior:
 		self.kolumny.append('Normalizacja: ' + self.kolumny[ktora])
 		self.typy.append(float)
 	
+
+		
 	def odchylenie_trzykrotne(self, ktora):
 		suma = 0.00
 		for i in range(len(self.lista)):
@@ -190,7 +218,7 @@ class Zbior:
 			
 if(__name__ == "__main__"):
 	z = Zbior()
-	z.wczytaj('dane.txt', '    ', 11, 1)
+	z.wczytaj('dane.txt', '    ', 11, 1,0)
 	z.rzutuj(int, 7)
 	z.rzutuj(str, 1)
 	z.rzutuj(float, 4)

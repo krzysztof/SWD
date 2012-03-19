@@ -3,7 +3,7 @@
 """The user interface for our app"""
 
 import os,sys
-from SWD import Zbior
+from SWD import *
 # Import Qt modules
 from PyQt4 import QtCore,QtGui
 
@@ -158,7 +158,29 @@ class Main(QtGui.QMainWindow):
 		  idx = self.ui.treeWidget.columnCount()
 		  self.ui.treeWidget.headerItem().setText(idx, QtGui.QApplication.translate("MainWindow", nazwa, None, QtGui.QApplication.UnicodeUTF8))
 	 def save_data(self):
-		  pass
+		  fname = QtGui.QFileDialog.getSaveFileName(self,'Zapisz plik','.')
+		  if(not fname):
+				return
+		  separ, ok = QtGui.QInputDialog.getText(self, 'Separator', 'Podaj separator (\\t dla tabulatora)')
+		  if not ok:
+				return
+		  kol, ok = QtGui.QInputDialog.getText(self, 'Nazwy kolumn', 'Zapisac nazwy kolumn ? [T/N]')
+		  if not ok:
+				return
+		  if(str(kol).upper()=="T"):
+			    kol=True
+		  else:
+			    kol=False
+		  typy, ok = QtGui.QInputDialog.getText(self, 'Nazwy typow', 'Zapisac nazwy typów ? [T/N]')
+		  if not ok:
+				return
+		  if(sep=='\\t'):sep='\t'
+		  if(str(typy).upper()=="T"):
+			    typy=True
+		  else:
+			    typy=False
+		  self.zb.zapisz(fname,separ,kol,typy)
+		  #pass
 	 def load_data(self):
 		  zb = Zbior()
 		  fname = QtGui.QFileDialog.getOpenFileName(self,'Otworz plik','.')
@@ -173,12 +195,21 @@ class Main(QtGui.QMainWindow):
 		  kolumny, ok = QtGui.QInputDialog.getText(self, 'Nazwy kolumn', 'Czu 0 wiersz to nazwy kolumn [T/N] ?')
 		  if not ok:
 				return
+		  typy, ok = QtGui.QInputDialog.getText(self, 'Nazwy typow', 'Czu 1 wiersz to nazwy typu [T/N] ?')
+		  if not ok:
+				return
+		  if(sep=='\\t'):sep='\t'
 		  if(str(kolumny).upper()=='T'):
 				kolumny = True
 		  else:
 				kolumny = False
+				
+		  if(str(typy).upper()=='T'):
+				typy = True
+		  else:
+				typy = False
 
-		  zb.wczytaj(fname,sep,int(ile),kolumny)
+		  zb.wczytaj(fname,sep,int(ile),kolumny,typy)
 		  self.zb = zb
 		  self.populate_from_set()
 	 def dyskretyzacjaPRD(self):
@@ -289,19 +320,19 @@ class Main(QtGui.QMainWindow):
 		  self.ui.actionWykres2D.triggered.connect(self.Wykres2D)
 
 		  
-		  self.TypToS = {str(int):"int",str(float):"float",str(bool):"bool",str(unicode):"str",str(str):"str"}
-		  self.SToTyp = {"int":int,"float":float,"bool":bool,"unicode":str,"str":str}
+		  self.TypToS = TypToS
+		  self.SToTyp = SToTyp
 
 def main_DBG():
-	 app = QtGui.QApplication(sys.argv)
-	 window=Main()
-	 window.show()
+	app = QtGui.QApplication(sys.argv)
+	window=Main()
+	window.show()
     # It's exec_ because exec is a reserved word in Python
-	 zb = Zbior()
-	 zb.wczytaj('dane.txt','    ',11,True)
-	 window.set_zbior(zb)
-	 window.populate_from_set()
-	 sys.exit(app.exec_())
+	zb = Zbior()
+	zb.wczytaj('dane.txt','    ',11,True,False)
+	window.set_zbior(zb)
+	window.populate_from_set()
+	sys.exit(app.exec_())
     
 def main():
     # Init the database before doing anything else
@@ -309,12 +340,14 @@ def main():
     
     # Again, this is boilerplate, it's going to be the same on 
     # almost every app you write
-	 app = QtGui.QApplication(sys.argv)
-	 window=Main()
-	 window.show()
+	app = QtGui.QApplication(sys.argv)
+	window=Main()
+	window.show()
     # It's exec_ because exec is a reserved word in Python
-	 sys.exit(app.exec_())
+	sys.exit(app.exec_())
     
 
 if __name__ == "__main__":
     main_DBG()
+	#main()
+	
