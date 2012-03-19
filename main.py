@@ -36,8 +36,7 @@ from window import Ui_MainWindow
 
 class Main(QtGui.QMainWindow):
 	 def DEBUG(self):
-		  self.remove_row(0)
-		  self.remove_col(0)
+		  self.recast_data()
 #		  self.print_data()
 		  #self.refresh_data()
 		  #self.edit_types()
@@ -64,24 +63,10 @@ class Main(QtGui.QMainWindow):
 				#print self.ui.treeWidget.
 		  #print cols,rows
 
-	 def refresh_data(self):
-		  data = Zbior()
-		  cols = self.ui.treeWidget.columnCount()
-		  rows = self.ui.treeWidget.topLevelItemCount()
-		  #self.ui.treeWidget.setHeaderLabels(["xxx"]*cols)
-		  labels = self.ui.treeWidget.headerItem()
-		  data.dodaj_kolumny([u'%s'%labels.text(i) for i in xrange(cols)])
-		  #narazie x razy unicode
-		  #data.dodaj_typy(self.zb.typy)
-		  data.dodaj_typy([unicode for i in xrange(cols)])
-		  lista = []
-		  root = self.ui.treeWidget.invisibleRootItem()
-		  child_count = root.childCount()
-		  for i in range(child_count):
-				item = root.child(i)
-				lista.append([data.typy[i](u'%s'%item.text(i)) for i in range(cols)])
-		  data.dodaj_liste(lista)
-		  self.zb = data
+	 def recast_data(self):
+		  for i in range(len(self.zb.typy)):
+				self.zb.rzutuj(self.zb.typy[i],i)
+		  
 
 	 def get_translated(self,string):
 		  return QtGui.QApplication.translate("MainWindow", string, None, QtGui.QApplication.UnicodeUTF8)
@@ -216,6 +201,9 @@ class Main(QtGui.QMainWindow):
 		  zb.wczytaj(fname,sep,int(ile),kolumny,typy)
 		  self.zb = zb
 		  self.populate_from_set()
+		  if(typy==True):
+				print "recasting"
+				self.recast_data()
 	 def dyskretyzacjaPRD(self):
 		  kol, ok = QtGui.QInputDialog.getText(self, 'Kolumna', 'Podaj indeks kolumny:')
 		  if not ok:
@@ -292,6 +280,29 @@ class Main(QtGui.QMainWindow):
 		  l2 = self.make_col_list(j)
 		  l3 = self.make_col_list(color)
 		  numpy_demo.wykres(l1,l2,l3,self.zb.kolumny[i],self.zb.kolumny[j])
+	 def Wykres3D(self):
+		  import numpy_demo
+		  i, ok = QtGui.QInputDialog.getText(self, 'Wektor X', 'Podaj kolumne:')
+		  if not ok:
+				return
+		  j, ok = QtGui.QInputDialog.getText(self, 'Wektor Y', 'Podaj kolumne:')
+		  if not ok:
+				return
+		  k, ok = QtGui.QInputDialog.getText(self, 'Wektor Z', 'Podaj kolumne:')
+		  if not ok:
+				return
+		  color, ok = QtGui.QInputDialog.getText(self, 'Kolor', 'Podaj kolumne koloru:')
+		  if not ok:
+				return
+		  i = int(i)
+		  j = int(j)
+		  k = int(k)
+		  color = int(color)
+		  l1 = self.make_col_list(i)
+		  l2 = self.make_col_list(j)
+		  l3 = self.make_col_list(k)
+		  l4 = self.make_col_list(color)
+		  numpy_demo.wykres3D(l1,l2,l3,l4,[self.zb.kolumny[i],self.zb.kolumny[j],self.zb.kolumny[k]])
 
 	 def __init__(self):
 		  QtGui.QMainWindow.__init__(self)
@@ -322,6 +333,7 @@ class Main(QtGui.QMainWindow):
 		  self.ui.actionOdstajaceProcent.triggered.connect(self.odstajaceProcent)
 		  self.ui.actionNormalizacja.triggered.connect(self.normalizacja)
 		  self.ui.actionWykres2D.triggered.connect(self.Wykres2D)
+		  self.ui.actionWykres3D.triggered.connect(self.Wykres3D)
 
 		  
 		  self.TypToS = TypToS
@@ -333,9 +345,10 @@ def main_DBG():
 	window.show()
     # It's exec_ because exec is a reserved word in Python
 	zb = Zbior()
-	zb.wczytaj('dane.txt','    ',11,True,False)
+	zb.wczytaj('dane2.txt','\t',0,True,True)
 	window.set_zbior(zb)
 	window.populate_from_set()
+	window.recast_data()
 	sys.exit(app.exec_())
     
 def main():
