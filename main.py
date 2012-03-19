@@ -83,6 +83,8 @@ class Main(QtGui.QMainWindow):
 		  data.dodaj_liste(lista)
 		  self.zb = data
 
+	 def get_translated(self,string):
+		  return QtGui.QApplication.translate("MainWindow", string, None, QtGui.QApplication.UnicodeUTF8)
 	 def populate_from_set(self):
 		  zb = self.zb
 		  if(not zb):
@@ -94,8 +96,14 @@ class Main(QtGui.QMainWindow):
 				self.add_row(i)
 		  text = ",".join([self.TypToS[str(x)] for x in zb.typy])
 		  self.ui.typesLineEdit.setText(text)
-		  #text = ",".join([self.get_translated(str(x)) for x in zb.kolumny])
-		  text = ",".join(zb.kolumny)
+		  col_num = len(zb.kolumny)
+		  text = self.get_translated('')
+		  for i in range(col_num-1):
+			text+=self.get_translated(zb.kolumny[i]+',')
+		  text+=self.get_translated(str(zb.kolumny[col_num-1]))
+		  
+		  #text = self.get_translated(',').join([self.get_translated(str(x)) for x in zb.kolumny])
+		  #text = ",".join(zb.kolumny)
 		  self.ui.namesLineEdit.setText(text)
 
 	 def set_zbior(self,zb):
@@ -150,10 +158,6 @@ class Main(QtGui.QMainWindow):
 		  text, ok = QtGui.QInputDialog.getText(self, 'Usun wiersz', 'Podaj numer wiersza')
 		  if ok:
 				self.remove_row(int(text))
-
-	 def get_translated(self,string):
-		  return QtGui.QApplication.translate("MainWindow", string, None, QtGui.QApplication.UnicodeUTF8)
-		  
 	 def add_column(self,nazwa):
 		  idx = self.ui.treeWidget.columnCount()
 		  self.ui.treeWidget.headerItem().setText(idx, QtGui.QApplication.translate("MainWindow", nazwa, None, QtGui.QApplication.UnicodeUTF8))
@@ -174,7 +178,7 @@ class Main(QtGui.QMainWindow):
 		  typy, ok = QtGui.QInputDialog.getText(self, 'Nazwy typow', 'Zapisac nazwy typów ? [T/N]')
 		  if not ok:
 				return
-		  if(sep=='\\t'):sep='\t'
+		  if(separ=='\\t'):separ='\t'
 		  if(str(typy).upper()=="T"):
 			    typy=True
 		  else:
