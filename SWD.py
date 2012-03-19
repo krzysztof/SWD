@@ -54,7 +54,7 @@ class Zbior:
 	def rzutuj(self, na_co, ktory):
 		self.typy[ktory] = na_co
 		for i in range(len(self.lista)):
-			if(na_co == float):
+			if(na_co == float and type(self.lista[i][ktory]) in [str,unicode]):
 				self.lista[i][ktory] = na_co(self.lista[i][ktory].replace(',','.'))
 			else:
 				self.lista[i][ktory] = na_co(self.lista[i][ktory])
@@ -202,3 +202,4 @@ if(__name__ == "__main__"):
 	z.odchylenie_trzykrotne(7)
 	z.odstajace_procentowo(0.1, 0.9, 4)
 	print z
+

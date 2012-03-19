@@ -177,8 +177,28 @@
     <addaction name="actionClear"/>
     <addaction name="actionDEBUG"/>
    </widget>
+   <widget class="QMenu" name="menuStat">
+    <property name="title">
+     <string>Stat</string>
+    </property>
+    <addaction name="actionDyskretyzacjaPRD"/>
+    <addaction name="actionDyskretyzacjaNK"/>
+    <addaction name="actionStandaryzacja"/>
+    <addaction name="actionNormalizacja"/>
+    <addaction name="actionOdstajace3x"/>
+    <addaction name="actionOdstajaceProcent"/>
+   </widget>
+   <widget class="QMenu" name="menuPlot">
+    <property name="title">
+     <string>Wykresy</string>
+    </property>
+    <addaction name="actionWykres2D"/>
+    <addaction name="actionWykres3D"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuData"/>
+   <addaction name="menuStat"/>
+   <addaction name="menuPlot"/>
    <addaction name="menuDebug"/>
   </widget>
   <action name="actionAdd_Row">
@@ -229,6 +249,46 @@
   <action name="actionSave">
    <property name="text">
     <string>Save</string>
+   </property>
+  </action>
+  <action name="actionDyskretyzacjaPRD">
+   <property name="text">
+    <string>Dyskretyzacja PRD</string>
+   </property>
+  </action>
+  <action name="actionDyskretyzacjaNK">
+   <property name="text">
+    <string>Dyskretyzacja NK</string>
+   </property>
+  </action>
+  <action name="actionStandaryzacja">
+   <property name="text">
+    <string>Standaryzacja</string>
+   </property>
+  </action>
+  <action name="actionNormalizacja">
+   <property name="text">
+    <string>Normalizacja MinMax</string>
+   </property>
+  </action>
+  <action name="actionOdstajace3x">
+   <property name="text">
+    <string>Odstajace3x</string>
+   </property>
+  </action>
+  <action name="actionOdstajaceProcent">
+   <property name="text">
+    <string>OdstajaceProcent</string>
+   </property>
+  </action>
+  <action name="actionWykres2D">
+   <property name="text">
+    <string>Wykres2D</string>
+   </property>
+  </action>
+  <action name="actionWykres3D">
+   <property name="text">
+    <string>Wykres3D</string>
    </property>
   </action>
  </widget>

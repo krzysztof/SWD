@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'window.ui'
 #
-# Created: Mon Mar 19 00:10:28 2012
+# Created: Mon Mar 19 02:37:21 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -92,6 +92,10 @@ class Ui_MainWindow(object):
         self.menuData.setObjectName(_fromUtf8("menuData"))
         self.menuDebug = QtGui.QMenu(self.menubar)
         self.menuDebug.setObjectName(_fromUtf8("menuDebug"))
+        self.menuStat = QtGui.QMenu(self.menubar)
+        self.menuStat.setObjectName(_fromUtf8("menuStat"))
+        self.menuPlot = QtGui.QMenu(self.menubar)
+        self.menuPlot.setObjectName(_fromUtf8("menuPlot"))
         MainWindow.setMenuBar(self.menubar)
         self.actionAdd_Row = QtGui.QAction(MainWindow)
         self.actionAdd_Row.setObjectName(_fromUtf8("actionAdd_Row"))
@@ -113,6 +117,22 @@ class Ui_MainWindow(object):
         self.actionLoad.setObjectName(_fromUtf8("actionLoad"))
         self.actionSave = QtGui.QAction(MainWindow)
         self.actionSave.setObjectName(_fromUtf8("actionSave"))
+        self.actionDyskretyzacjaPRD = QtGui.QAction(MainWindow)
+        self.actionDyskretyzacjaPRD.setObjectName(_fromUtf8("actionDyskretyzacjaPRD"))
+        self.actionDyskretyzacjaNK = QtGui.QAction(MainWindow)
+        self.actionDyskretyzacjaNK.setObjectName(_fromUtf8("actionDyskretyzacjaNK"))
+        self.actionStandaryzacja = QtGui.QAction(MainWindow)
+        self.actionStandaryzacja.setObjectName(_fromUtf8("actionStandaryzacja"))
+        self.actionNormalizacja = QtGui.QAction(MainWindow)
+        self.actionNormalizacja.setObjectName(_fromUtf8("actionNormalizacja"))
+        self.actionOdstajace3x = QtGui.QAction(MainWindow)
+        self.actionOdstajace3x.setObjectName(_fromUtf8("actionOdstajace3x"))
+        self.actionOdstajaceProcent = QtGui.QAction(MainWindow)
+        self.actionOdstajaceProcent.setObjectName(_fromUtf8("actionOdstajaceProcent"))
+        self.actionWykres2D = QtGui.QAction(MainWindow)
+        self.actionWykres2D.setObjectName(_fromUtf8("actionWykres2D"))
+        self.actionWykres3D = QtGui.QAction(MainWindow)
+        self.actionWykres3D.setObjectName(_fromUtf8("actionWykres3D"))
         self.menuFile.addAction(self.actionLoad)
         self.menuFile.addAction(self.actionSave)
         self.menuData.addAction(self.actionAdd_Row)
@@ -122,8 +142,18 @@ class Ui_MainWindow(object):
         self.menuDebug.addAction(self.actionPopulate_from_set)
         self.menuDebug.addAction(self.actionClear)
         self.menuDebug.addAction(self.actionDEBUG)
+        self.menuStat.addAction(self.actionDyskretyzacjaPRD)
+        self.menuStat.addAction(self.actionDyskretyzacjaNK)
+        self.menuStat.addAction(self.actionStandaryzacja)
+        self.menuStat.addAction(self.actionNormalizacja)
+        self.menuStat.addAction(self.actionOdstajace3x)
+        self.menuStat.addAction(self.actionOdstajaceProcent)
+        self.menuPlot.addAction(self.actionWykres2D)
+        self.menuPlot.addAction(self.actionWykres3D)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuData.menuAction())
+        self.menubar.addAction(self.menuStat.menuAction())
+        self.menubar.addAction(self.menuPlot.menuAction())
         self.menubar.addAction(self.menuDebug.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -136,6 +166,8 @@ class Ui_MainWindow(object):
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuData.setTitle(QtGui.QApplication.translate("MainWindow", "Data", None, QtGui.QApplication.UnicodeUTF8))
         self.menuDebug.setTitle(QtGui.QApplication.translate("MainWindow", "Debug", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuStat.setTitle(QtGui.QApplication.translate("MainWindow", "Stat", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuPlot.setTitle(QtGui.QApplication.translate("MainWindow", "Wykresy", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAdd_Row.setText(QtGui.QApplication.translate("MainWindow", "Add Row", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAdd_Col.setText(QtGui.QApplication.translate("MainWindow", "Add Col", None, QtGui.QApplication.UnicodeUTF8))
         self.actionClear.setText(QtGui.QApplication.translate("MainWindow", "(DEBUG)Clear", None, QtGui.QApplication.UnicodeUTF8))
@@ -146,4 +178,12 @@ class Ui_MainWindow(object):
         self.actionEdit_Column_Types.setText(QtGui.QApplication.translate("MainWindow", "Edit Column Types", None, QtGui.QApplication.UnicodeUTF8))
         self.actionLoad.setText(QtGui.QApplication.translate("MainWindow", "Load", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSave.setText(QtGui.QApplication.translate("MainWindow", "Save", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionDyskretyzacjaPRD.setText(QtGui.QApplication.translate("MainWindow", "Dyskretyzacja PRD", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionDyskretyzacjaNK.setText(QtGui.QApplication.translate("MainWindow", "Dyskretyzacja NK", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionStandaryzacja.setText(QtGui.QApplication.translate("MainWindow", "Standaryzacja", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionNormalizacja.setText(QtGui.QApplication.translate("MainWindow", "Normalizacja MinMax", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionOdstajace3x.setText(QtGui.QApplication.translate("MainWindow", "Odstajace3x", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionOdstajaceProcent.setText(QtGui.QApplication.translate("MainWindow", "OdstajaceProcent", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionWykres2D.setText(QtGui.QApplication.translate("MainWindow", "Wykres2D", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionWykres3D.setText(QtGui.QApplication.translate("MainWindow", "Wykres3D", None, QtGui.QApplication.UnicodeUTF8))
 

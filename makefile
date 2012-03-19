@@ -1,4 +1,4 @@
 ui:
 	pyuic4 window.ui -o window.py
 run:
-	python main.py
+	python2.6 main.py

@@ -112,6 +112,10 @@ class Main(QtGui.QMainWindow):
 				print "can't cast! different size of types"
 		  else:
 				self.zb.typy = types
+				for i in range(len(types)):
+					 self.zb.rzutuj(types[i],i)
+				#for i in range(len(types)):
+					 #self.zb.rzutuj(types[i],i)
 				self.populate_from_set()
 
 	 def edit_names(self):
@@ -123,14 +127,14 @@ class Main(QtGui.QMainWindow):
 				self.populate_from_set()
 
 
-	 def add_row(self):
-		  add_row(None)
+	 #def add_row(self):
+		  #add_row(None)
 		  
 	 def add_row(self,row_data):
 		  item = QtGui.QTreeWidgetItem(self.ui.treeWidget)
 		  if(row_data):
 				for i in xrange(len(row_data)):
-					 text = QtGui.QApplication.translate("MainWindow", row_data[i], None, QtGui.QApplication.UnicodeUTF8)
+					 text = QtGui.QApplication.translate("MainWindow", str(row_data[i]), None, QtGui.QApplication.UnicodeUTF8)
 					 item.setText(i,text)
 		  item.setFlags(QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsDragEnabled|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
 
@@ -153,6 +157,106 @@ class Main(QtGui.QMainWindow):
 	 def add_column(self,nazwa):
 		  idx = self.ui.treeWidget.columnCount()
 		  self.ui.treeWidget.headerItem().setText(idx, QtGui.QApplication.translate("MainWindow", nazwa, None, QtGui.QApplication.UnicodeUTF8))
+	 def save_data(self):
+		  pass
+	 def load_data(self):
+		  zb = Zbior()
+		  fname = QtGui.QFileDialog.getOpenFileName(self,'Otworz plik','.')
+		  if(not fname):
+				return
+		  sep, ok = QtGui.QInputDialog.getText(self, 'Separator', 'Podaj separator (\\t dla tabulatora)')
+		  if not ok:
+				return
+		  ile, ok = QtGui.QInputDialog.getText(self, 'Pomijanie wierszy', 'Ile wierszy pominac ?')
+		  if not ok:
+				return
+		  kolumny, ok = QtGui.QInputDialog.getText(self, 'Nazwy kolumn', 'Czu 0 wiersz to nazwy kolumn [T/N] ?')
+		  if not ok:
+				return
+		  if(str(kolumny).upper()=='T'):
+				kolumny = True
+		  else:
+				kolumny = False
+
+		  zb.wczytaj(fname,sep,int(ile),kolumny)
+		  self.zb = zb
+		  self.populate_from_set()
+	 def dyskretyzacjaPRD(self):
+		  kol, ok = QtGui.QInputDialog.getText(self, 'Kolumna', 'Podaj indeks kolumny:')
+		  if not ok:
+				return
+		  n, ok = QtGui.QInputDialog.getText(self, 'N', 'Podaj N:')
+		  if not ok:
+				return
+		  self.zb.dyskretyzuj(int(kol),int(n))
+		  self.populate_from_set()
+	 def dyskretyzacjaNK(self):
+		  kol, ok = QtGui.QInputDialog.getText(self, 'Kolumna', 'Podaj indeks kolumny:')
+		  if not ok:
+				return
+		  n, ok = QtGui.QInputDialog.getText(self, 'N', 'Podaj N:')
+		  if not ok:
+				return
+		  self.zb.dyskretyzuj2(int(kol),int(n))
+		  self.populate_from_set()
+	 def standaryzacja(self):
+		  kol, ok = QtGui.QInputDialog.getText(self, 'Kolumna', 'Podaj indeks kolumny:')
+		  if not ok:
+				return
+		  self.zb.standaryzuj(int(kol))
+		  self.populate_from_set()
+	 def odstajace3x(self):
+		  kol, ok = QtGui.QInputDialog.getText(self, 'Kolumna', 'Podaj indeks kolumny:')
+		  if not ok:
+				return
+		  self.zb.odchylenie_trzykrotne(int(kol))
+		  self.populate_from_set()
+	 def odstajaceProcent(self):
+		  mi, ok = QtGui.QInputDialog.getText(self, 'Minimum np 0.05', 'Podaj minimum:')
+		  if not ok:
+				return
+		  mx, ok = QtGui.QInputDialog.getText(self, 'Maksimum np 0.95', 'Podaj maksimum:')
+		  if not ok:
+				return
+		  kol, ok = QtGui.QInputDialog.getText(self, 'Kolumna', 'Podaj indeks kolumny:')
+		  if not ok:
+				return
+		  self.zb.odstajace_procentowo(float(mi),float(mx),int(kol))
+		  self.populate_from_set()
+	 def normalizacja(self):
+		  mi, ok = QtGui.QInputDialog.getText(self, 'Minimum np 0.0', 'Podaj minimum:')
+		  if not ok:
+				return
+		  mx, ok = QtGui.QInputDialog.getText(self, 'Maksimum np 50.0', 'Podaj maksimum:')
+		  if not ok:
+				return
+		  kol, ok = QtGui.QInputDialog.getText(self, 'Kolumna', 'Podaj indeks kolumny:')
+		  if not ok:
+				return
+		  self.zb.normalizuj(float(mi),float(mx),int(kol))
+		  self.populate_from_set()
+
+	 def make_col_list(self,col):
+		  return [self.zb.lista[i][col] for i in range(len(self.zb.lista))]
+
+	 def Wykres2D(self):
+		  import numpy_demo
+		  i, ok = QtGui.QInputDialog.getText(self, 'Wektor X', 'Podaj kolumne:')
+		  if not ok:
+				return
+		  j, ok = QtGui.QInputDialog.getText(self, 'Wektor Y', 'Podaj kolumne:')
+		  if not ok:
+				return
+		  color, ok = QtGui.QInputDialog.getText(self, 'Kolor', 'Podaj kolumne koloru:')
+		  if not ok:
+				return
+		  i = int(i)
+		  j = int(j)
+		  color = int(color)
+		  l1 = self.make_col_list(i)
+		  l2 = self.make_col_list(j)
+		  l3 = self.make_col_list(color)
+		  numpy_demo.wykres(l1,l2,l3,self.zb.kolumny[i],self.zb.kolumny[j])
 
 	 def __init__(self):
 		  QtGui.QMainWindow.__init__(self)
@@ -172,38 +276,31 @@ class Main(QtGui.QMainWindow):
 		  self.ui.actionDEBUG.triggered.connect(self.DEBUG)
 		  self.ui.typesPushButton.clicked.connect(self.edit_types)
 		  self.ui.namesPushButton.clicked.connect(self.edit_names)
-		  self.TypToS = {str(int):"int",str(float):"float",str(bool):"bool",str(unicode):"unicode"}
-		  self.SToTyp = {"int":int,"float":float,"bool":bool,"unicode":unicode}
+		  self.ui.actionSave.triggered.connect(self.save_data)
+		  self.ui.actionLoad.triggered.connect(self.load_data)
 
-        # Let's do something interesting: load the database contents 
-        # into our task list widget
-#        for task in todo.Task.query().all():
-#            tags=','.join([t.name for t in task.tags])
-#            item=QtGui.QTreeWidgetItem([task.text,str(task.date),tags])
-#            item.task=task
-#            if task.done:
-#                item.setCheckState(0,QtCore.Qt.Checked)
-#            else:
-#                item.setCheckState(0,QtCore.Qt.Unchecked)
-#            self.ui.list.addTopLevelItem(item)
+		  #zadanie1
+		  self.ui.actionDyskretyzacjaPRD.triggered.connect(self.dyskretyzacjaPRD)
+		  self.ui.actionDyskretyzacjaNK.triggered.connect(self.dyskretyzacjaNK)
+		  self.ui.actionStandaryzacja.triggered.connect(self.standaryzacja)
+		  self.ui.actionOdstajace3x.triggered.connect(self.odstajace3x)
+		  self.ui.actionOdstajaceProcent.triggered.connect(self.odstajaceProcent)
+		  self.ui.actionNormalizacja.triggered.connect(self.normalizacja)
+		  self.ui.actionWykres2D.triggered.connect(self.Wykres2D)
 
-#    def on_list_itemChanged(self,item,column):
-#        if item.checkState(0):
-#            item.task.done=True
-#        else:
-#            item.task.done=False
-#        todo.saveData()
-
+		  
+		  self.TypToS = {str(int):"int",str(float):"float",str(bool):"bool",str(unicode):"str",str(str):"str"}
+		  self.SToTyp = {"int":int,"float":float,"bool":bool,"unicode":str,"str":str}
 
 def main_DBG():
 	 app = QtGui.QApplication(sys.argv)
 	 window=Main()
 	 window.show()
+    # It's exec_ because exec is a reserved word in Python
 	 zb = Zbior()
-	 zb.wczytaj('dane.txt','    ',11,'Q')
+	 zb.wczytaj('dane.txt','    ',11,True)
 	 window.set_zbior(zb)
 	 window.populate_from_set()
-    # It's exec_ because exec is a reserved word in Python
 	 sys.exit(app.exec_())
     
 def main():
