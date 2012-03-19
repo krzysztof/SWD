@@ -7,13 +7,11 @@ from SWD import *
 # Import Qt modules
 from PyQt4 import QtCore,QtGui
 
-# Import the compiled UI module
+
 from window import Ui_MainWindow
 
-# Import our backend
-#import todo
 
-# Create a class for our main window
+# juz niepotrzebna klasa
 ###class ChangeTypeDialog(QtGui.QWidget):
 ###
 ###	 def __init__(self,window):
@@ -37,7 +35,7 @@ from window import Ui_MainWindow
 class Main(QtGui.QMainWindow):
 	 def DEBUG(self):
 		  self.recast_data()
-#		  self.print_data()
+		  #self.print_data()
 		  #self.refresh_data()
 		  #self.edit_types()
 	 def remove_row(self,i):
@@ -45,7 +43,7 @@ class Main(QtGui.QMainWindow):
 		  self.populate_from_set()
 	 def remove_col(self,i):
 		  self.zb.usun_zmienna(int(i))
-		  self.populate_from_set() ## sprawdzic czy dziala
+		  self.populate_from_set()
 	 
 	 def print_data(self):
 		  cols = self.ui.treeWidget.columnCount()
@@ -307,7 +305,7 @@ class Main(QtGui.QMainWindow):
 	 def __init__(self):
 		  QtGui.QMainWindow.__init__(self)
         
-        # This is always the same
+
 		  self.ui=Ui_MainWindow()
 		  self.ui.setupUi(self)
 		  self.clear_tree()
@@ -343,7 +341,7 @@ def main_DBG():
 	app = QtGui.QApplication(sys.argv)
 	window=Main()
 	window.show()
-    # It's exec_ because exec is a reserved word in Python
+
 	zb = Zbior()
 	zb.wczytaj('dane2.txt','\t',0,True,True)
 	window.set_zbior(zb)
@@ -352,15 +350,11 @@ def main_DBG():
 	sys.exit(app.exec_())
     
 def main():
-    # Init the database before doing anything else
-#    todo.initDB()
-    
-    # Again, this is boilerplate, it's going to be the same on 
-    # almost every app you write
+
 	app = QtGui.QApplication(sys.argv)
 	window=Main()
 	window.show()
-    # It's exec_ because exec is a reserved word in Python
+
 	sys.exit(app.exec_())
     
 
