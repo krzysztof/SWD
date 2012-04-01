@@ -1,4 +1,4 @@
-from math import sqrt
+from math import *
 
 TypToS = {str(int):"int",str(float):"float",str(bool):"bool",str(unicode):"str",str(str):"str"}
 SToTyp = {"int":int,"float":float,"bool":bool,"unicode":str,"str":str}
@@ -215,19 +215,102 @@ class Zbior:
 				
 		self.kolumny.append('Czy odstaje proc: ' + self.kolumny[ktora])
 		self.typy.append(bool)
+		
+	def klasyfikuj(self, obiekt, indeksy, klasa_decyzyjna, metryka, k):
+		# obiekt - wiersz z wartoscia do klasyfikacji
+		# indeksy - indeksy kolumn, na podstawie ktorych odbywac sie bedzie klasyfikacja
+		# klasa_decyzyjna - indeks kolumny, ktora mamy ustawic
+		# metryka - rodzaj metryki uzytej przy klasyfikacji
+		# k- liczba najblizszych sasiadow
+		zbior =[]
+		wzor = []
+		
+		#ustalenie zbioru wektorow do klasyfikacji - na koncu kazdego wektora klasa decyzyjna
+		for i in self.lista:
+			tmp = []
+			for j in range(len(indeksy)):
+				tmp.append(i[indeksy[j]])
+			tmp.append(i[klasa_decyzyjna])
+			zbior.append(tmp)
+			
+		#ustalenie wektora wzorcowego 
+		for i in range(len(indeksy)):
+			wzor.append(obiekt[indeksy[i]])
+		
+		#na koncu kazdego wektora dodaje odleglosc od klasyfikowanego obiektu
+		for i in range(len(zbior)):
+			zbior[i].append(metryka(wzor, zbior[i][:-1]))
+		
+		#sortuje ten zbior wedlug odleglosci
+		zbior.sort(key = lambda x: x[-1])
+		
+		#wybieram tylko k najblizszych sasiadow
+		zbior = zbior[:k]
+		
+		lista = []
+		
+		for i in range(len(zbior)):
+			lista.append(zbior[i][-2])
+
+		return self.najczesciejWyst(lista)
+		
+		
+	def najczesciejWyst(self, lista):
+		return max(set(lista), key=lista.count)
+		
+		
+	def metrykaEuklidesowa(self, A, B):
+		suma = 0
+		for i in range(len(A)):
+			suma += pow(A[i] - B[i],2)
+		suma = sqrt(suma)
+		return suma
+		
+	def metrykaMiejska(self, A, B):
+		suma = 0
+		for i in range(len(A)):
+			suma += fabs(A[i] - B[i])
+		return suma
+	
+	#def metrykaMAhalanobisa(self, A, B):
+	
+	def ocenaKlasyfikacji(self, k, metryka, klasa_decyzyjna, indeksy):
+		for i in range(len(self.lista)):
+			self.lista[i].append(self.klasyfikuj(self.lista[i], indeksy, klasa_decyzyjna, metryka, k))
+		
+		ile = 0
+		for i in range(len(self.lista)):
+			if (self.lista[i][klasa_decyzyjna] == self.lista[i][-1]):
+				ile += 1
+				
+		ocena = float(ile) / float(len(self.lista))
+		print 'Poprawnie: '
+		print ile 
+		print '\n Wszystkie: '
+		print len(self.lista)
+		print 'Ocena: '
+		return ocena
 			
 if(__name__ == "__main__"):
 	z = Zbior()
-	z.wczytaj('dane.txt', '    ', 11, 1,0)
-	z.rzutuj(int, 7)
-	z.rzutuj(str, 1)
+	z.wczytaj('dane2.txt', '\t', 0, 1,1)
 	z.rzutuj(float, 4)
+	z.rzutuj(float, 5)
+	z.rzutuj(float, 6)
+	#z.rzutuj(int, 7)
+	#z.rzutuj(str, 1)
+	#z.rzutuj(float, 4)
 	#z.usun_zmienna(0)
 	#z.dyskretyzuj(7,3)
 	#z.dyskretyzuj2(7,3)
 	#z.standaryzuj(7)
 	#z.normalizuj(10,100,7)
-	z.odchylenie_trzykrotne(7)
-	z.odstajace_procentowo(0.1, 0.9, 4)
-	print z
+	#z.odchylenie_trzykrotne(7)
+	#z.odstajace_procentowo(0.1, 0.9, 4)
+	obiekt = ["EKSPERM", 0,"PO_1","L", 13.32, 11.0 ,4 ,6]
+	#print z.klasyfikuj(obiekt, [4,5,6], 1, z.metrykaMiejska, 5)
+	
+	print z.ocenaKlasyfikacji(5, z.metrykaEuklidesowa, 1, [4,5,6])
+	
+	#print z
 

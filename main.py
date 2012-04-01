@@ -158,7 +158,7 @@ class Main(QtGui.QMainWindow):
 			    kol=True
 		  else:
 			    kol=False
-		  typy, ok = QtGui.QInputDialog.getText(self, 'Nazwy typow', 'Zapisac nazwy typów ? [T/N]')
+		  typy, ok = QtGui.QInputDialog.getText(self, 'Nazwy typow', 'Zapisac nazwy typÃ³w ? [T/N]')
 		  if not ok:
 				return
 		  if(separ=='\\t'):separ='\t'
@@ -359,6 +359,6 @@ def main():
     
 
 if __name__ == "__main__":
-    main_DBG()
+    main()
 	#main()
 	
