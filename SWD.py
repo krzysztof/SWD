@@ -272,7 +272,7 @@ class Zbior:
 			suma += fabs(A[i] - B[i])
 		return suma
 	
-	#def metrykaMAhalanobisa(self, A, B):
+	def metrykaMAhalanobisa(self, A, B):
 	
 	def ocenaKlasyfikacji(self, k, metryka, klasa_decyzyjna, indeksy):
 		for i in range(len(self.lista)):
