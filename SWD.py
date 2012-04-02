@@ -272,7 +272,8 @@ class Zbior:
 			suma += fabs(A[i] - B[i])
 		return suma
 	
-	def metrykaMAhalanobisa(self, A, B):
+	def metrykaMahalanobisa(self, A, B):
+		pass #usun to jak cos tu wstawisz
 	
 	def ocenaKlasyfikacji(self, k, metryka, klasa_decyzyjna, indeksy):
 		for i in range(len(self.lista)):
@@ -282,14 +283,8 @@ class Zbior:
 		for i in range(len(self.lista)):
 			if (self.lista[i][klasa_decyzyjna] == self.lista[i][-1]):
 				ile += 1
-				
-		ocena = float(ile) / float(len(self.lista))
-		print 'Poprawnie: '
-		print ile 
-		print '\n Wszystkie: '
-		print len(self.lista)
-		print 'Ocena: '
-		return ocena
+
+		return [ile,len(self.lista)]				
 			
 if(__name__ == "__main__"):
 	z = Zbior()
@@ -309,8 +304,8 @@ if(__name__ == "__main__"):
 	#z.odstajace_procentowo(0.1, 0.9, 4)
 	obiekt = ["EKSPERM", 0,"PO_1","L", 13.32, 11.0 ,4 ,6]
 	#print z.klasyfikuj(obiekt, [4,5,6], 1, z.metrykaMiejska, 5)
-	
-	print z.ocenaKlasyfikacji(5, z.metrykaEuklidesowa, 1, [4,5,6])
+	ocena = z.ocenaKlasyfikacji(5, z.metrykaEuklidesowa, 1, [4,5,6])	
+	print "%d/%d: %f"%(ocena[0],ocena[1],float(ocena[0])/ocena[1])
 	
 	#print z
 
