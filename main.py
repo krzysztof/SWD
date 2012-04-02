@@ -301,6 +301,45 @@ class Main(QtGui.QMainWindow):
 		  l3 = self.make_col_list(k)
 		  l4 = self.make_col_list(color)
 		  numpy_demo.wykres3D(l1,l2,l3,l4,[self.zb.kolumny[i],self.zb.kolumny[j],self.zb.kolumny[k]])
+	 def SprawdzKlasyfikacje(self, metryka):
+		  indeksy, ok = QtGui.QInputDialog.getText(self, 'Podaj wektory', 'Podaj kolumny oddzielone przecinkiem np. 4,6,7:')
+		  if not ok:
+				return
+		  
+		  klasa, ok = QtGui.QInputDialog.getText(self, 'Klasa Decyzyjna', 'Podaj kolumne klasy decyzyjnej:')
+		  if not ok:
+				return
+
+		  k, ok = QtGui.QInputDialog.getText(self, 'Sasiedzi', 'Podaj k:')
+		  if not ok:
+				return
+		  indeksy = [int(i) for i in indeksy.split(',')]
+		  #metryka = self.zb.metrykaEuklidesowa
+	 	  ocena = self.zb.ocenaKlasyfikacji(int(k),metryka,int(klasa), indeksy)
+	 	  reply = QtGui.QMessageBox.question(self, 'Podsumowanie',
+            "%d z %d Sklasyfikowanych poprawnie (%.2f %%)"%(ocena[0],ocena[1],float(ocena[0])*100./ocena[1]), 
+            QtGui.QMessageBox.Ok, QtGui.QMessageBox.Ok)
+	 	  
+	 def SprawdzEuklidesowa(self):
+	 	  self.SprawdzKlasyfikacje(self.zb.metrykaEuklidesowa)
+	 	  
+	 def SprawdzMiejska(self):
+	 	  self.SprawdzKlasyfikacje(self.zb.metrykaMiejska)
+	 	  
+	 def SprawdzMahalanobisa(self):
+	 	  self.SprawdzKlasyfikacje(self.zb.metrykaMahalanobisa)
+
+	 def KlasyfikujEuklidesowa(self):
+	 	  self.SklasyfikujObiekt(self.zb.metrykaEuklidesowa)
+	 	  
+	 def KlasyfikujMiejska(self):
+	 	  self.SklasifikujObiekt(self.zb.metrykaMiejska)
+	 	  
+	 def KlasyfikujMahalanobisa(self):
+	 	  self.SklasifikujObiekt(self.zb.metrykaMahalanobisa)
+
+	 def SklasyfikujObiekt(self, metryka):
+	 	  print "hiKlas"+str(metryka)
 
 	 def __init__(self):
 		  QtGui.QMainWindow.__init__(self)
@@ -332,6 +371,74 @@ class Main(QtGui.QMainWindow):
 		  self.ui.actionNormalizacja.triggered.connect(self.normalizacja)
 		  self.ui.actionWykres2D.triggered.connect(self.Wykres2D)
 		  self.ui.actionWykres3D.triggered.connect(self.Wykres3D)
+		  #self.ui.actionSprawdzOcene.triggered.connect(self.SprawdzOceneKlasyfikacji)
+		  #self.ui.actionSklasyfikujObiekt.triggered.connect(self.SklasyfikujObiekt)
+		  self.ui.actionMetryk_Euklidesow.triggered.connect(self.SprawdzEuklidesowa)
+		  self.ui.actionMetryk_Miejsk.triggered.connect(self.SprawdzMiejska)
+		  #self.ui.actionMetryk_Mahalanobisa.triggered.connect(self.SprawdzMahalanobisa)
+		  self.ui.actionMetryk_Euklidesow_2.triggered.connect(self.KlasyfikujEuklidesowa)
+		  self.ui.actionMetryk_Miejsk_2.triggered.connect(self.KlasyfikujMiejska)
+		  #self.ui.actionMetryk_Mahalanobisa_2.triggered.connect(self.KlasyfikujMahalanobisa)
+
+		  
+		  self.TypToS = TypToS
+		  self.SToTyp = SToTyp
+
+def main_DBG():
+	app = QtGui.QApplication(sys.argv)
+	window=Main()
+	window.show()
+
+	zb = Zbior()
+	zb.wczytaj('dane2.txt','\t',0,True,True)
+	window.set_zbior(zb)
+	window.populate_from_set()
+	window.recast_data()
+	sys.exit(app.exec_())
+    
+def main():
+
+	 def SklasyfikujObiekt(self):
+	 	  print "hiKlas"
+
+	 def __init__(self):
+		  QtGui.QMainWindow.__init__(self)
+        
+
+		  self.ui=Ui_MainWindow()
+		  self.ui.setupUi(self)
+		  self.clear_tree()
+
+		  self.ui.actionAdd_Row.triggered.connect(self.add_row)
+		  self.ui.actionAdd_Col.triggered.connect(self.add_empty_column)
+		  self.ui.actionDelete_Col.triggered.connect(self.remove_column_dialog)
+		  self.ui.actionDelete_Row.triggered.connect(self.remove_row_dialog)
+
+		  self.ui.actionClear.triggered.connect(self.clear_tree)
+		  self.ui.actionPopulate_from_set.triggered.connect(self.populate_from_set)
+		  self.ui.actionDEBUG.triggered.connect(self.DEBUG)
+		  self.ui.typesPushButton.clicked.connect(self.edit_types)
+		  self.ui.namesPushButton.clicked.connect(self.edit_names)
+		  self.ui.actionSave.triggered.connect(self.save_data)
+		  self.ui.actionLoad.triggered.connect(self.load_data)
+
+		  #zadanie1
+		  self.ui.actionDyskretyzacjaPRD.triggered.connect(self.dyskretyzacjaPRD)
+		  self.ui.actionDyskretyzacjaNK.triggered.connect(self.dyskretyzacjaNK)
+		  self.ui.actionStandaryzacja.triggered.connect(self.standaryzacja)
+		  self.ui.actionOdstajace3x.triggered.connect(self.odstajace3x)
+		  self.ui.actionOdstajaceProcent.triggered.connect(self.odstajaceProcent)
+		  self.ui.actionNormalizacja.triggered.connect(self.normalizacja)
+		  self.ui.actionWykres2D.triggered.connect(self.Wykres2D)
+		  self.ui.actionWykres3D.triggered.connect(self.Wykres3D)
+		  #self.ui.actionSprawdzOcene.triggered.connect(self.SprawdzOceneKlasyfikacji)
+		  #self.ui.actionSklasyfikujObiekt.triggered.connect(self.SklasyfikujObiekt)
+		  self.ui.actionMetryk_Euklidesow.triggered.connect(self.SprawdzEuklidesowa)
+		  self.ui.actionMetryk_Miejsk.triggered.connect(self.SprawdzMiejska)
+		  #self.ui.actionMetryk_Mahalanobisa.triggered.connect(self.SprawdzMahalanobisa)
+		  self.ui.actionMetryk_Euklidesow_2.triggered.connect(self.KlasyfikujEuklidesowa)
+		  self.ui.actionMetryk_Miejsk_2.triggered.connect(self.KlasyfikujMiejska)
+		  #self.ui.actionMetryk_Mahalanobisa_2.triggered.connect(self.KlasyfikujMahalanobisa)
 
 		  
 		  self.TypToS = TypToS
@@ -359,6 +466,6 @@ def main():
     
 
 if __name__ == "__main__":
-    main()
+    main_DBG()
 	#main()
 	

@@ -134,6 +134,11 @@
       <attribute name="headerStretchLastSection">
        <bool>false</bool>
       </attribute>
+      <column>
+       <property name="text">
+        <string notr="true">1</string>
+       </property>
+      </column>
      </widget>
     </item>
    </layout>
@@ -195,10 +200,34 @@
     <addaction name="actionWykres2D"/>
     <addaction name="actionWykres3D"/>
    </widget>
+   <widget class="QMenu" name="menuKlasyfikacja">
+    <property name="title">
+     <string>Klasyfikacja</string>
+    </property>
+    <widget class="QMenu" name="menuSklasyfikuj_obiekt">
+     <property name="title">
+      <string>Sklasyfikuj obiekt</string>
+     </property>
+     <addaction name="actionMetryk_Euklidesow_2"/>
+     <addaction name="actionMetryk_Miejsk_2"/>
+     <addaction name="actionMetryk_Machalanobisa_2"/>
+    </widget>
+    <widget class="QMenu" name="menuSprawd_ocene_klasyfikacji">
+     <property name="title">
+      <string>Sprawdź ocene klasyfikacji</string>
+     </property>
+     <addaction name="actionMetryk_Euklidesow"/>
+     <addaction name="actionMetryk_Miejsk"/>
+     <addaction name="actionMetryk_Machalanobisa"/>
+    </widget>
+    <addaction name="menuSklasyfikuj_obiekt"/>
+    <addaction name="menuSprawd_ocene_klasyfikacji"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuData"/>
    <addaction name="menuStat"/>
    <addaction name="menuPlot"/>
+   <addaction name="menuKlasyfikacja"/>
    <addaction name="menuDebug"/>
   </widget>
   <action name="actionAdd_Row">
@@ -289,6 +318,36 @@
   <action name="actionWykres3D">
    <property name="text">
     <string>Wykres3D</string>
+   </property>
+  </action>
+  <action name="actionMetryk_Miejsk">
+   <property name="text">
+    <string>Metryką Miejską</string>
+   </property>
+  </action>
+  <action name="actionMetryk_Euklidesow">
+   <property name="text">
+    <string>Metryką Euklidesową</string>
+   </property>
+  </action>
+  <action name="actionMetryk_Machalanobisa">
+   <property name="text">
+    <string>Metryką Machalanobisa</string>
+   </property>
+  </action>
+  <action name="actionMetryk_Euklidesow_2">
+   <property name="text">
+    <string>Metryką Euklidesową</string>
+   </property>
+  </action>
+  <action name="actionMetryk_Miejsk_2">
+   <property name="text">
+    <string>Metryką Miejską</string>
+   </property>
+  </action>
+  <action name="actionMetryk_Machalanobisa_2">
+   <property name="text">
+    <string>Metryką Machalanobisa</string>
    </property>
   </action>
  </widget>
