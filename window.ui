@@ -210,7 +210,7 @@
      </property>
      <addaction name="actionMetryk_Euklidesow_2"/>
      <addaction name="actionMetryk_Miejsk_2"/>
-     <addaction name="actionMetryk_Machalanobisa_2"/>
+     <addaction name="actionMetryk_Mahalanobisa_2"/>
     </widget>
     <widget class="QMenu" name="menuSprawd_ocene_klasyfikacji">
      <property name="title">
@@ -218,7 +218,7 @@
      </property>
      <addaction name="actionMetryk_Euklidesow"/>
      <addaction name="actionMetryk_Miejsk"/>
-     <addaction name="actionMetryk_Machalanobisa"/>
+     <addaction name="actionMetryk_Mahalanobisa"/>
     </widget>
     <addaction name="menuSklasyfikuj_obiekt"/>
     <addaction name="menuSprawd_ocene_klasyfikacji"/>
@@ -330,9 +330,9 @@
     <string>Metryką Euklidesową</string>
    </property>
   </action>
-  <action name="actionMetryk_Machalanobisa">
+  <action name="actionMetryk_Mahalanobisa">
    <property name="text">
-    <string>Metryką Machalanobisa</string>
+    <string>Metryką Mahalanobisa</string>
    </property>
   </action>
   <action name="actionMetryk_Euklidesow_2">
@@ -345,9 +345,14 @@
     <string>Metryką Miejską</string>
    </property>
   </action>
-  <action name="actionMetryk_Machalanobisa_2">
+  <action name="actionMetryk_Mahalanobisa_2">
    <property name="text">
-    <string>Metryką Machalanobisa</string>
+    <string>Metryką Mahalanobisa</string>
+   </property>
+  </action>
+  <action name="actionAAA">
+   <property name="text">
+    <string>AAA</string>
    </property>
   </action>
  </widget>
