@@ -1,1 +1,1 @@
-/c/Python27_32/python.exe main.py
+/c/Python27/python.exe main.py

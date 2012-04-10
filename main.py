@@ -336,7 +336,7 @@ class Main(QtGui.QMainWindow):
 	 	  self.SklasifikujObiekt(self.zb.metrykaMiejska)
 	 	  
 	 def KlasyfikujMahalanobisa(self):
-	 	  self.SklasifikujObiekt(self.zb.metrykaMahalanobisa)
+	 	  self.SklasyfikujObiekt(self.zb.metrykaMahalanobisa)
 
 	 def SklasyfikujObiekt(self, metryka):
 	 	  print "hiKlas"+str(metryka)
