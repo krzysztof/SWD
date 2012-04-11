@@ -320,18 +320,26 @@ def main():
 	
 	#print z
 def DBG():
-	from numpy import cov
-	from matrix import matrix
+	from numpy import cov,matrix,linalg
+	#from matrix import matrix
+	from math import sqrt
 	A = [1,3,4,5]
 	B = [3,4,5,6]
+	X = matrix([A])
+	Y = matrix([B])
 	cov_matrix=[]
-	for i in cov(A,B):
+	for i in range(len(A)):
 		tmp = []
-		for j in i:
-			tmp.append(j)
+		for j in range(len(A)):
+			tmp_cov = cov([A[i],B[j]])
+			tmp.append(float(tmp_cov))
 		cov_matrix.append(tmp)
 	cov_matrix = matrix(cov_matrix)
-	print cov_matrix
+	C = cov_matrix
+	print X
+	print Y
+	print linalg.det(C)
+	#return sqrt( (X-Y)*C.I*(X-Y).T )
 
 if(__name__ == "__main__"):
 	DBG()
