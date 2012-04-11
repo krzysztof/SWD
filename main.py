@@ -10,28 +10,6 @@ from PyQt4 import QtCore,QtGui
 
 from window import Ui_MainWindow
 
-
-# juz niepotrzebna klasa
-###class ChangeTypeDialog(QtGui.QWidget):
-###
-###	def __init__(self,window):
-###		super(ChangeTypeDialog,self).__init__()
-###		self.window = window
-###		self.initUI()
-###
-###	def initUI(self):
-###		possible = [int,float,bool,unicode]
-###		cols = self.window.ui.treeWidget.columnCount()
-###		combos = []
-###		vbox = QtGui.QVBoxLayout(self)
-###		for i in range(cols):
-###				cbx = QtGui.QComboBox()
-###				for p in possible:
-###					cbx.addItems(QtCore.QStringList([str(x) for x in possible]))
-###				vbox.addWidget(cbx)
-###				combos.append(cbx)
-###		self.show()
-
 class Main(QtGui.QMainWindow):
 	def DEBUG(self):
 		self.recast_data()
@@ -357,6 +335,8 @@ class Main(QtGui.QMainWindow):
 				return
 		indeksy = [int(i) for i in indeksy.split(',')]
 
+		print "hi323"
+		self.zb.calc_covariance_matrix(indeksy)
 		wynik =  self.zb.klasyfikuj(self.zb.lista[item_index],indeksy, int(klasa), metryka, int(k))
 		zapisac, ok = QtGui.QInputDialog.getText(self, 'Zaktualizowac wynik na liscie ?', 'Uzyskano wynik:%s\nCzy chcesz zapisac wynik do obiektu ?[T/N]'%(wynik))
 		if not ok:

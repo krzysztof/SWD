@@ -272,20 +272,41 @@ class Zbior:
 		for i in range(len(A)):
 			suma += fabs(A[i] - B[i])
 		return suma
-	
-	def metrykaMahalanobisa(self, A, B):
+
+	def calc_covariance_matrix(self,indeksy):
 		from numpy import cov
-		from matrix import matrix
-		cov_matrix=[]
-		for i in cov(A,B):
-			tmp = []
-			for j in i:
-				tmp.append(j)
-			cov_matrix.append(tmp)
-		cov_matrix = matrix(cov_matrix)
-		print cov_matrix
-		pass #usun to jak cos tu wstawisz
-	
+		zbior = []
+		#for i in self.lista:
+		#	tmp = []
+		#	for j in range(len(indeksy)):
+		#		tmp.append(i[indeksy[j]])
+		#	zbior.append(tmp)
+		for i in indeksy:
+			zbior.append([x[i] for x in self.lista])
+		#print zbior
+		self.cov_matrix = cov(zbior)
+		#print self.cov_matrix
+
+	def metrykaMahalanobisa(self, A, B):
+		from numpy import cov,matrix,linalg
+		from math import sqrt
+		C = self.cov_matrix
+		X = matrix([A])
+		Y = matrix([B])
+		#for i in range(len(A)):
+		#	tmp = []
+		#	for j in range(len(A)):
+		#		tmp_cov = cov([A[i],B[j]])
+		#		tmp.append(float(tmp_cov))
+		#	cov_matrix.append(tmp)
+		#cov_matrix = matrix(cov_matrix)
+		#print X
+		#print Y
+		# TODO dlaczego tak duzo razy to sie wykonuje
+		print linalg.det(self.cov_matrix),"hi"
+		#print C
+		#return sqrt( (X-Y) * (C.I) * ((X-Y).T) )
+
 	def ocenaKlasyfikacji(self, k, metryka, klasa_decyzyjna, indeksy):
 		for i in range(len(self.lista)):
 			self.lista[i].append(self.klasyfikuj(self.lista[i], indeksy, klasa_decyzyjna, metryka, k))
@@ -295,7 +316,7 @@ class Zbior:
 			if (self.lista[i][klasa_decyzyjna] == self.lista[i][-1]):
 				ile += 1
 
-		return [ile,len(self.lista)]				
+		return [ile,len(self.lista)]
 			
 def main():
 	z = Zbior()
@@ -315,7 +336,7 @@ def main():
 	#z.odstajace_procentowo(0.1, 0.9, 4)
 	obiekt = ["EKSPERM", 0,"PO_1","L", 13.32, 11.0 ,4 ,6]
 	#print z.klasyfikuj(obiekt, [4,5,6], 1, z.metrykaMiejska, 5)
-	ocena = z.ocenaKlasyfikacji(5, z.metrykaEuklidesowa, 1, [4,5,6])	
+	ocena = z.ocenaKlasyfikacji(5, z.metrykaEuklidesowa, 1, [4,5,6])
 	print "%d/%d: %f"%(ocena[0],ocena[1],float(ocena[0])/ocena[1])
 	
 	#print z
