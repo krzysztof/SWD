@@ -274,6 +274,16 @@ class Zbior:
 		return suma
 	
 	def metrykaMahalanobisa(self, A, B):
+		from numpy import cov
+		from matrix import matrix
+		cov_matrix=[]
+		for i in cov(A,B):
+			tmp = []
+			for j in i:
+				tmp.append(j)
+			cov_matrix.append(tmp)
+		cov_matrix = matrix(cov_matrix)
+		print cov_matrix
 		pass #usun to jak cos tu wstawisz
 	
 	def ocenaKlasyfikacji(self, k, metryka, klasa_decyzyjna, indeksy):
@@ -287,7 +297,7 @@ class Zbior:
 
 		return [ile,len(self.lista)]				
 			
-if(__name__ == "__main__"):
+def main():
 	z = Zbior()
 	z.wczytaj('dane2.txt', '\t', 0, 1,1)
 	z.rzutuj(float, 4)
@@ -309,4 +319,20 @@ if(__name__ == "__main__"):
 	print "%d/%d: %f"%(ocena[0],ocena[1],float(ocena[0])/ocena[1])
 	
 	#print z
+def DBG():
+	from numpy import cov
+	from matrix import matrix
+	A = [1,3,4,5]
+	B = [3,4,5,6]
+	cov_matrix=[]
+	for i in cov(A,B):
+		tmp = []
+		for j in i:
+			tmp.append(j)
+		cov_matrix.append(tmp)
+	cov_matrix = matrix(cov_matrix)
+	print cov_matrix
+
+if(__name__ == "__main__"):
+	DBG()
 
