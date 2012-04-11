@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'window.ui'
 #
-# Created: Mon Apr  2 15:04:09 2012
+# Created: Wed Apr 11 12:45:51 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -144,14 +144,16 @@ class Ui_MainWindow(object):
         self.actionMetryk_Miejsk.setObjectName(_fromUtf8("actionMetryk_Miejsk"))
         self.actionMetryk_Euklidesow = QtGui.QAction(MainWindow)
         self.actionMetryk_Euklidesow.setObjectName(_fromUtf8("actionMetryk_Euklidesow"))
-        self.actionMetryk_Machalanobisa = QtGui.QAction(MainWindow)
-        self.actionMetryk_Machalanobisa.setObjectName(_fromUtf8("actionMetryk_Machalanobisa"))
+        self.actionMetryk_Mahalanobisa = QtGui.QAction(MainWindow)
+        self.actionMetryk_Mahalanobisa.setObjectName(_fromUtf8("actionMetryk_Mahalanobisa"))
         self.actionMetryk_Euklidesow_2 = QtGui.QAction(MainWindow)
         self.actionMetryk_Euklidesow_2.setObjectName(_fromUtf8("actionMetryk_Euklidesow_2"))
         self.actionMetryk_Miejsk_2 = QtGui.QAction(MainWindow)
         self.actionMetryk_Miejsk_2.setObjectName(_fromUtf8("actionMetryk_Miejsk_2"))
-        self.actionMetryk_Machalanobisa_2 = QtGui.QAction(MainWindow)
-        self.actionMetryk_Machalanobisa_2.setObjectName(_fromUtf8("actionMetryk_Machalanobisa_2"))
+        self.actionMetryk_Mahalanobisa_2 = QtGui.QAction(MainWindow)
+        self.actionMetryk_Mahalanobisa_2.setObjectName(_fromUtf8("actionMetryk_Mahalanobisa_2"))
+        self.actionAAA = QtGui.QAction(MainWindow)
+        self.actionAAA.setObjectName(_fromUtf8("actionAAA"))
         self.menuFile.addAction(self.actionLoad)
         self.menuFile.addAction(self.actionSave)
         self.menuData.addAction(self.actionAdd_Row)
@@ -171,10 +173,10 @@ class Ui_MainWindow(object):
         self.menuPlot.addAction(self.actionWykres3D)
         self.menuSklasyfikuj_obiekt.addAction(self.actionMetryk_Euklidesow_2)
         self.menuSklasyfikuj_obiekt.addAction(self.actionMetryk_Miejsk_2)
-        self.menuSklasyfikuj_obiekt.addAction(self.actionMetryk_Machalanobisa_2)
+        self.menuSklasyfikuj_obiekt.addAction(self.actionMetryk_Mahalanobisa_2)
         self.menuSprawd_ocene_klasyfikacji.addAction(self.actionMetryk_Euklidesow)
         self.menuSprawd_ocene_klasyfikacji.addAction(self.actionMetryk_Miejsk)
-        self.menuSprawd_ocene_klasyfikacji.addAction(self.actionMetryk_Machalanobisa)
+        self.menuSprawd_ocene_klasyfikacji.addAction(self.actionMetryk_Mahalanobisa)
         self.menuKlasyfikacja.addAction(self.menuSklasyfikuj_obiekt.menuAction())
         self.menuKlasyfikacja.addAction(self.menuSprawd_ocene_klasyfikacji.menuAction())
         self.menubar.addAction(self.menuFile.menuAction())
@@ -219,8 +221,9 @@ class Ui_MainWindow(object):
         self.actionWykres3D.setText(QtGui.QApplication.translate("MainWindow", "Wykres3D", None, QtGui.QApplication.UnicodeUTF8))
         self.actionMetryk_Miejsk.setText(QtGui.QApplication.translate("MainWindow", "Metryką Miejską", None, QtGui.QApplication.UnicodeUTF8))
         self.actionMetryk_Euklidesow.setText(QtGui.QApplication.translate("MainWindow", "Metryką Euklidesową", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionMetryk_Machalanobisa.setText(QtGui.QApplication.translate("MainWindow", "Metryką Machalanobisa", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionMetryk_Mahalanobisa.setText(QtGui.QApplication.translate("MainWindow", "Metryką Mahalanobisa", None, QtGui.QApplication.UnicodeUTF8))
         self.actionMetryk_Euklidesow_2.setText(QtGui.QApplication.translate("MainWindow", "Metryką Euklidesową", None, QtGui.QApplication.UnicodeUTF8))
         self.actionMetryk_Miejsk_2.setText(QtGui.QApplication.translate("MainWindow", "Metryką Miejską", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionMetryk_Machalanobisa_2.setText(QtGui.QApplication.translate("MainWindow", "Metryką Machalanobisa", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionMetryk_Mahalanobisa_2.setText(QtGui.QApplication.translate("MainWindow", "Metryką Mahalanobisa", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionAAA.setText(QtGui.QApplication.translate("MainWindow", "AAA", None, QtGui.QApplication.UnicodeUTF8))
 

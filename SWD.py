@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from math import *
 
 TypToS = {str(int):"int",str(float):"float",str(bool):"bool",str(unicode):"str",str(str):"str"}
