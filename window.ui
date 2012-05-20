@@ -149,7 +149,7 @@
      <x>0</x>
      <y>0</y>
      <width>765</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -222,6 +222,8 @@
     </widget>
     <addaction name="menuSklasyfikuj_obiekt"/>
     <addaction name="menuSprawd_ocene_klasyfikacji"/>
+    <addaction name="actionMetoda_K_Srednich"/>
+    <addaction name="actionMetoda_K_Srednich_optymalne_K"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuData"/>
@@ -353,6 +355,16 @@
   <action name="actionAAA">
    <property name="text">
     <string>AAA</string>
+   </property>
+  </action>
+  <action name="actionMetoda_K_Srednich">
+   <property name="text">
+    <string>Metoda K-Srednich</string>
+   </property>
+  </action>
+  <action name="actionMetoda_K_Srednich_optymalne_K">
+   <property name="text">
+    <string>Metoda K-Srednich - optymalne K</string>
    </property>
   </action>
  </widget>

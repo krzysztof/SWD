@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from math import *
 
@@ -6,9 +7,9 @@ SToTyp = {"int":int,"float":float,"bool":bool,"unicode":str,"str":str}
 
 class Zbior:
 	def __init__(self):
-		self.lista = []
-		self.kolumny = []
-		self.typy = []
+		self.lista = [] # wektory wartosci
+		self.kolumny = [] # nazwy kolumn
+		self.typy = [] # typy zmiennych
 		pass
 	def dodaj_liste(self,lista):
 		self.lista += list(lista)
@@ -16,6 +17,9 @@ class Zbior:
 		self.typy += list(typy)
 	def dodaj_kolumny(self,kolumny):
 		self.kolumny += list(kolumny)
+	def rzutuj_dane(self):
+		for i in range(len(self.typy)):
+			self.rzutuj(self.typy[i],i)
 	def __repr__(self):
 		s = "Liczba zmiennych: "+str(len(self.lista[0]))+"\n"
 		s += "Liczba obserwacji: "+str(len(self.lista))+"\n"
@@ -297,6 +301,97 @@ class Zbior:
 
 		return [ile,len(self.lista)]
 
+	def _srednia(self, obiekty):
+		sr = [0]*len(obiekty[0])
+		for zm in range(len(obiekty[0])):
+			suma = 0
+			for i in obiekty:
+				suma += i[zm]
+			sr[zm] = float(suma)/len(obiekty)
+		return sr
+
+
+	def licz_k_srednich(self, k, metryka, klasa_decyzyjna, indeksy, N=None, dopasuj=True):
+		"""
+		Funkcja klasyfikujaca metoda k-srednich
+
+		metryka - metryka odleglosci
+		k - k klas
+		klasa_decyzyjna - indeks kolumny klasy decyzyjnej
+		indeksy - indeksy kolumn wartosci
+		N - ile razy iterowac jesli podane N,
+		jesli nie podane, iterowac az nie ma zmian pomiedzy klasami (max 500 iteracji)
+		"""
+		wartosci = []
+		klasy_prawdziwe = []
+		for wektor in self.lista:
+			wartosci.append([wektor[i] for i in indeksy])
+			klasy_prawdziwe.append(wektor[klasa_decyzyjna])
+		from random import sample
+		srednie = sample(wartosci,k)
+		klasy_tmp = [-1]*len(wartosci)
+
+		def iteruj(klasy_tmp, srednie):
+			for w in range(len(wartosci)):
+				min = [0,metryka(wartosci[w],srednie[0])]
+				for s_idx in range(len(srednie)):
+					dystans = metryka(srednie[s_idx],wartosci[w])
+					if dystans < min[1]:
+						min = [s_idx, dystans]
+				klasy_tmp[w] = min[0]
+			for i in range(k):
+				obiekty = [wartosci[w] for w in range(len(wartosci)) if klasy_tmp[w]==i]
+				srednie[i] = self._srednia(obiekty)
+
+			return [klasy_tmp, srednie]
+
+		if N:
+			for i in range(N):
+				klasy_tmp, srednie = iteruj(list(klasy_tmp), list(srednie))
+		else:
+			for i in range(500):
+				klasy_tmp_prev, srednie_prev = list(klasy_tmp), list(srednie)
+				klasy_tmp, srednie = iteruj(list(klasy_tmp), list(srednie))
+
+				if klasy_tmp == klasy_tmp_prev:
+					break
+
+		def poprawnie_sklasyfikowanych(mapping):
+			correct = 0.
+			for i in range(len(klasy_prawdziwe)):
+				if klasy_tmp[i] == mapping[klasy_prawdziwe[i]]:
+					correct+=1
+			return correct/len(klasy_prawdziwe)
+
+		if not dopasuj: #jesli nie dopasowujemy klas poczatkowych, zwracamy jedynie wynik i srednie
+			return [klasy_tmp, srednie]
+		else:
+			from itertools import permutations
+			klasy_prawdziwe_typy = list(set(klasy_prawdziwe))
+			if k == len(klasy_prawdziwe_typy):
+				best_klas = [-1.,range(k)]
+				for perm in permutations(range(k)):
+					mapping = dict((klasy_prawdziwe_typy[i], perm[i]) for i in range(k))
+					popr_val = poprawnie_sklasyfikowanych(mapping)
+					if popr_val > best_klas[0]:
+						best_klas = [popr_val, perm]
+
+				mapping = dict((klasy_prawdziwe_typy[i], best_klas[1][i]) for i in range(k))
+				mapping2 = dict((v,k) for k,v in mapping.items())
+				for w in range(len(self.lista)):
+					self.lista[w].append(mapping2[klasy_tmp[w]])
+				self.kolumny.append('Metoda %d-srednich'%(k))
+				self.typy.append(str)
+				return {'result':'OK', 'val':best_klas[0], 'perm': best_klas[1]}
+			else:
+				for w in range(len(self.lista)):
+					self.lista[w].append(klasy_tmp[w])
+				self.kolumny.append('Metoda %d-srednich'%(k))
+				self.typy.append(int)
+				return {'result':'NIE'}
+
+
+
 def main():
 	z = Zbior()
 	z.wczytaj('dane2.txt', '\t', 0, 1,1)
@@ -341,8 +436,13 @@ def DBG_Mahalanobis():
 	print linalg.det(C)
 	#return sqrt( (X-Y)*C.I*(X-Y).T )
 
-def DBG():
-	pass
+def DBG_k_srednich():
+	z = Zbior()
+	z.wczytaj('dane/irisdat2.txt', '\t', 0, 1,1)
+	z.rzutuj_dane()
+	output = z.licz_k_srednich(3,z.metrykaEuklidesowa,4,[0,1,2,3], None)
+	if output['result'] == 'OK':
+		print output['val']
 if(__name__ == "__main__"):
-	DBG()
+	DBG_k_srednich()
 

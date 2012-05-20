@@ -366,6 +366,38 @@ class Main(QtGui.QMainWindow):
 			self.zb.lista[item_index][int(klasa)] = wynik
 			self.populate_from_set()
 
+	def Metoda_K_Srednich(self):
+		N = None
+		k, ok = QtGui.QInputDialog.getText(self, 'K klas', 'Podaj k:')
+		if not ok:
+			return
+
+		klasa, ok = QtGui.QInputDialog.getText(self, 'Klasa decyzyjna', 'Podaj indeks klasy decyzyjnej:')
+		if not ok:
+			return
+
+		indeksy, ok = QtGui.QInputDialog.getText(self, 'Indeksy Zmiennych', 'Podaj indeksy kolumn oddzielone ",":')
+		if not ok:
+			return
+
+		indeksy = [int(i) for i in indeksy.split(',')]
+
+		N, ok = QtGui.QInputDialog.getText(self, 'Ilosc iteracji', 'Podaj ilosc iteracji, lub -1 jesli chcesz iterowac az nie bedzie zmian:')
+		if not ok:
+			return
+
+		N = int(N)
+
+		wynik = self.zb.licz_k_srednich(int(k), self.zb.metrykaEuklidesowa, int(klasa), indeksy, (N if N>0 else None))
+
+		if wynik['result'] == 'OK':
+			self.PopupMessage("Podsumowanie klasyfikacji", "Sklasyfikowano %.2f%% osobnikow poprawnie" %(wynik['val']*100))
+		else:
+			self.PopupMessage("Nie mozna podsumowac klasyfikacji", "Nie mozna bylo podsumowac klasyfikacji, k <> faktycznej ilosci klas")
+		self.populate_from_set()
+
+	def Metoda_K_Srednich_search(self):
+		pass #TODO
 	def __init__(self):
 		QtGui.QMainWindow.__init__(self)
 
@@ -403,6 +435,8 @@ class Main(QtGui.QMainWindow):
 		self.ui.actionMetryk_Euklidesow_2.triggered.connect(self.KlasyfikujEuklidesowa)
 		self.ui.actionMetryk_Miejsk_2.triggered.connect(self.KlasyfikujMiejska)
 		self.ui.actionMetryk_Mahalanobisa_2.triggered.connect(self.KlasyfikujMahalanobisa)
+		self.ui.actionMetoda_K_Srednich.triggered.connect(self.Metoda_K_Srednich)
+		self.ui.actionMetoda_K_Srednich_optymalne_K.triggered.connect(self.Metoda_K_Srednich_search)
 
 		self.TypToS = TypToS
 		self.SToTyp = SToTyp

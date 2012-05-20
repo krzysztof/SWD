@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'window.ui'
 #
-# Created: Wed Apr 11 12:45:51 2012
+# Created: Mon May 21 00:27:51 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -80,7 +80,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.treeWidget)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 765, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 765, 25))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menuFile = QtGui.QMenu(self.menubar)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
@@ -154,6 +154,10 @@ class Ui_MainWindow(object):
         self.actionMetryk_Mahalanobisa_2.setObjectName(_fromUtf8("actionMetryk_Mahalanobisa_2"))
         self.actionAAA = QtGui.QAction(MainWindow)
         self.actionAAA.setObjectName(_fromUtf8("actionAAA"))
+        self.actionMetoda_K_Srednich = QtGui.QAction(MainWindow)
+        self.actionMetoda_K_Srednich.setObjectName(_fromUtf8("actionMetoda_K_Srednich"))
+        self.actionMetoda_K_Srednich_optymalne_K = QtGui.QAction(MainWindow)
+        self.actionMetoda_K_Srednich_optymalne_K.setObjectName(_fromUtf8("actionMetoda_K_Srednich_optymalne_K"))
         self.menuFile.addAction(self.actionLoad)
         self.menuFile.addAction(self.actionSave)
         self.menuData.addAction(self.actionAdd_Row)
@@ -179,6 +183,8 @@ class Ui_MainWindow(object):
         self.menuSprawd_ocene_klasyfikacji.addAction(self.actionMetryk_Mahalanobisa)
         self.menuKlasyfikacja.addAction(self.menuSklasyfikuj_obiekt.menuAction())
         self.menuKlasyfikacja.addAction(self.menuSprawd_ocene_klasyfikacji.menuAction())
+        self.menuKlasyfikacja.addAction(self.actionMetoda_K_Srednich)
+        self.menuKlasyfikacja.addAction(self.actionMetoda_K_Srednich_optymalne_K)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuData.menuAction())
         self.menubar.addAction(self.menuStat.menuAction())
@@ -226,4 +232,6 @@ class Ui_MainWindow(object):
         self.actionMetryk_Miejsk_2.setText(QtGui.QApplication.translate("MainWindow", "Metryką Miejską", None, QtGui.QApplication.UnicodeUTF8))
         self.actionMetryk_Mahalanobisa_2.setText(QtGui.QApplication.translate("MainWindow", "Metryką Mahalanobisa", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAAA.setText(QtGui.QApplication.translate("MainWindow", "AAA", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionMetoda_K_Srednich.setText(QtGui.QApplication.translate("MainWindow", "Metoda K-Srednich", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionMetoda_K_Srednich_optymalne_K.setText(QtGui.QApplication.translate("MainWindow", "Metoda K-Srednich - optymalne K", None, QtGui.QApplication.UnicodeUTF8))
 
