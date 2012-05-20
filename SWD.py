@@ -295,8 +295,8 @@ class Zbior:
 			if (self.lista[i][klasa_decyzyjna] == self.lista[i][-1]):
 				ile += 1
 
-		return [ile,len(self.lista)]				
-			
+		return [ile,len(self.lista)]
+
 def main():
 	z = Zbior()
 	z.wczytaj('dane2.txt', '\t', 0, 1,1)
@@ -319,7 +319,7 @@ def main():
 	print "%d/%d: %f"%(ocena[0],ocena[1],float(ocena[0])/ocena[1])
 	
 	#print z
-def DBG():
+def DBG_Mahalanobis():
 	from numpy import cov,matrix,linalg
 	#from matrix import matrix
 	from math import sqrt
@@ -341,6 +341,8 @@ def DBG():
 	print linalg.det(C)
 	#return sqrt( (X-Y)*C.I*(X-Y).T )
 
+def DBG():
+	pass
 if(__name__ == "__main__"):
 	DBG()
 

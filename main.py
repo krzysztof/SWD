@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """The user interface for our app"""
@@ -472,7 +473,7 @@ def main_DBG():
 	window.show()
 
 	zb = Zbior()
-	zb.wczytaj('dane2.txt','\t',0,True,True)
+	zb.wczytaj('dane/dane2.txt','\t',0,True,True)
 	window.set_zbior(zb)
 	window.populate_from_set()
 	window.recast_data()
