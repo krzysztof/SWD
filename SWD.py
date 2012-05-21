@@ -310,6 +310,35 @@ class Zbior:
 			sr[zm] = float(suma)/len(obiekty)
 		return sr
 
+	def sklasyfikuj_k(self, k, klasy_tmp, indeksy, srednie):
+		rozrzuty_suma = 0.0;
+		wartosci = []
+		for wektor in self.lista:
+			wartosci.append([wektor[i] for i in indeksy])
+		for t in range(k):
+			#TODO BUG,
+			osobniki = [wartosci[i] for i in range(len(wartosci)) if klasy_tmp[i]==t]
+			srednia = self._srednia(osobniki)
+			#srednia = srednie[t]
+			max_rozrzut = max([self.metrykaEuklidesowa(osobniki[i], srednia) for i in range(len(osobniki))])
+			rozrzuty_suma += max_rozrzut
+		return rozrzuty_suma
+
+
+	def znajdz_k_srednich(self, metryka, klasa_decyzyjna, indeksy, N=None):
+		k_max = 10; #do ilu klas maksymalnie szukac
+		k_min = 2
+		rozrzuty = []
+		for k in range(k_min, k_max+1):
+			klasy_tmp, srednie = self.licz_k_srednich(k,metryka,klasa_decyzyjna, indeksy, N, False)
+			rozrzuty.append([self.sklasyfikuj_k(k,klasy_tmp,indeksy,srednie), k, klasy_tmp])
+		wynik = sorted(rozrzuty, key=lambda a: a[0])[0]
+		for w in range(len(self.lista)):
+			self.lista[w].append(wynik[2][w])
+		self.kolumny.append('Metoda %d-srednich'%(wynik[1]))
+		self.typy.append(int)
+		return wynik
+
 
 	def licz_k_srednich(self, k, metryka, klasa_decyzyjna, indeksy, N=None, dopasuj=True):
 		"""
@@ -440,9 +469,10 @@ def DBG_k_srednich():
 	z = Zbior()
 	z.wczytaj('dane/irisdat2.txt', '\t', 0, 1,1)
 	z.rzutuj_dane()
-	output = z.licz_k_srednich(3,z.metrykaEuklidesowa,4,[0,1,2,3], None)
-	if output['result'] == 'OK':
-		print output['val']
+	#output = z.licz_k_srednich(3,z.metrykaEuklidesowa,4,[0,1,2,3], None)
+	#if output['result'] == 'OK':
+		#print output['val']
+	print z.znajdz_k_srednich(z.metrykaEuklidesowa,4,[0,1,2,3])
 if(__name__ == "__main__"):
 	DBG_k_srednich()
 

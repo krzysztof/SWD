@@ -397,7 +397,22 @@ class Main(QtGui.QMainWindow):
 		self.populate_from_set()
 
 	def Metoda_K_Srednich_search(self):
-		pass #TODO
+
+		indeksy, ok = QtGui.QInputDialog.getText(self, 'Indeksy Zmiennych', 'Podaj indeksy kolumn oddzielone ",":')
+		if not ok:
+			return
+
+		klasa, ok = QtGui.QInputDialog.getText(self, 'Klasa decyzyjna', 'Podaj indeks klasy decyzyjnej:')
+		if not ok:
+			return
+
+		indeksy = [int(i) for i in indeksy.split(',')]
+		klasa = int(klasa)
+
+		wynik = self.zb.znajdz_k_srednich(self.zb.metrykaEuklidesowa,klasa, indeksy)
+		self.populate_from_set()
+		self.PopupMessage("Podsumowanie szukania K", "Optymalne K: %d, Suma odchylen: %.3f" %(wynik[1],wynik[0]))
+
 	def __init__(self):
 		QtGui.QMainWindow.__init__(self)
 
